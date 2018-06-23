@@ -35,6 +35,7 @@
     "hubot": "^2.19.0",
     "lodash": "^4.17.10",
     "log": "^1.4.0",
+    "node-fetch": "^2.1.2",
     "sactive-di": "^1.2.0",
     "sactive-web": "^2.2.0"
   },
