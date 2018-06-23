@@ -29,7 +29,8 @@
 - PLATFORM:
     question: ''
     options:
-    - 1: ''
+    - slack:
+        question: ''
     - 2: ''
 ```
 
