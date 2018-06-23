@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/sactive/sactive-bot#readme",
   "dependencies": {
+    "coffeescript": "^2.3.1",
     "extend": "^3.0.1",
     "hubot": "^2.19.0",
     "lodash": "^4.17.10",
