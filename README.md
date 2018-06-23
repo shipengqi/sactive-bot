@@ -29,9 +29,8 @@
 - PLATFORM:
     question: ''
     options:
-    - slack:
-        question: ''
-    - 2: ''
+    - slack
+    - wechat
 ```
 
 **common config**
