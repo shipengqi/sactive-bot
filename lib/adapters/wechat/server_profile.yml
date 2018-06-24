@@ -1,0 +1,18 @@
+push:
+    domain: https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin
+
+api:
+    domain: https://wx.qq.com/cgi-bin/mmwebwx-bin
+
+file:
+    domain: https://file.wx.qq.com/cgi-bin/mmwebwx-bin/
+---
+
+push:
+    domain: https://webpush.wx2.qq.com/cgi-bin/mmwebwx-bin
+
+api:
+    domain: https://wx2.qq.com/cgi-bin/mmwebwx-bin
+
+file:
+    domain: https://file2.wx.qq.com/cgi-bin/mmwebwx-bin
