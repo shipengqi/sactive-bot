@@ -33,6 +33,7 @@
     "commander": "^2.15.1",
     "extend": "^3.0.1",
     "hubot": "^2.19.0",
+    "hubot-wechat2": "^1.1.0",
     "lodash": "^4.17.10",
     "log": "^1.4.0",
     "node-fetch": "^2.1.2",
