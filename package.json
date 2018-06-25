@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "mocha --require babel-register --check-leaks --bail --exit",
+    "test:cov": "nyc --reporter=html --reporter=text mocha --require babel-register --check-leaks --bail --exit",
+    "test:ci": "nyc --reporter=html --reporter=text-lcov > coverage.lcov mocha --require babel-register --check-leaks --bail --exit",
+    "build:doc": "./docs.sh"
   },
   "repository": {
     "type": "git",

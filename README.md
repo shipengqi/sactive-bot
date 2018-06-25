@@ -21,6 +21,9 @@
   - external adapter
 - docker version
 - kubernetes yaml file
+- scripts hot reload
+- help
+- script register
 
 ## config yaml
 ```yml
