@@ -4,27 +4,32 @@ const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
 const {ymlHelper} = require('../lib/utils');
+const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
-
-function create(cmd) {
+const adaptersPath = path.join(__dirname, '../lib/adapters');
+const CONFIG_MAP = new Map([
+  [1, `${adaptersPath}/wechat/config.yml`]
+]);
+async function create(cmd) {
+  let platformConfigData = ymlHelper.get(platformConfig);
+  let platformSchema = transformPrompt(platformConfigData);
   let commonConfigData = ymlHelper.get(commonConfig);
-  let schema = transformPrompt(commonConfigData);
-  configConsole(schema)
-    .then(inputs => {
-      console.log(inputs);
-    })
-    .catch(e => {
-      console.error(e);
-      process.exit();
-    });
+  let commonSchema = transformPrompt(commonConfigData);
+  let platform = await configConsole(platformSchema);
+  let adapterConfigData = ymlHelper.get(CONFIG_MAP.get(Number(platform.PLATFORM)));
+  let adapterSchema = transformPrompt(adapterConfigData);
+  let schema = extend(true, {}, commonSchema, adapterSchema);
+  let envs = await configConsole(schema);
+  let allEnvs = extend(true, {}, envs, platform);
+  console.log(allEnvs);
 }
 
 function run(cmd) {
   console.log(cmd.name);
 }
 
-function createAndRun(cmd) {
-  create(cmd);
+async function createAndRun(cmd) {
+  await create(cmd);
   run(cmd);
 }
 

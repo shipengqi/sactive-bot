@@ -1,0 +1,3 @@
+PLATFORM:
+  description: 'Choose your platform：\n1) WeChat \n2) QQ \n3) DingTalk \n4) Slack \n5) Microsoft Teams \n6) Mattermost \n7) External'
+  pattern: /^[1-7]$/
