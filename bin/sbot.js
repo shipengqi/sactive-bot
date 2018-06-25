@@ -38,7 +38,6 @@ program
 program
   .command('create')
   .description('create a bot')
-  .option('-c, --config [file]', 'specify configuration file')
   .option('-s, --start', 'create and start bot')
   .action(cmd => {
     command = cmd;

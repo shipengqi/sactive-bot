@@ -11,10 +11,12 @@ function create(cmd) {
   let schema = transformPrompt(commonConfigData);
   configConsole(schema)
     .then(inputs => {
-      console.log('---------------------');
       console.log(inputs);
     })
-    .catch(console.error);
+    .catch(e => {
+      console.error(e);
+      process.exit();
+    });
 }
 
 function run(cmd) {
@@ -46,16 +48,17 @@ function transformPrompt(config) {
   };
   let defaultPrompt = {
     description: '',
-    type: 'string',
     hidden: false,
     replace: '*',
     required: true
   };
   _.each(config, (item, key) => {
     item.pattern = eval2(item.pattern);
-    item.description = colors.cyan(item.description);
+    item.description = colors.cyan(item.description.replace(/\\n/g, '\n'));
     item.message = item.message || `${key} is required.`;
+    item.type = 'string';
     result.properties[key] = extend({}, defaultPrompt, item);
+    console.log(result.properties[key])
   });
   return result;
 }

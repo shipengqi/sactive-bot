@@ -1,5 +1,5 @@
 PLATFORM:
-  description: 'Choose your platform：1) WeChat 2) QQ 3) DingTalk 4) Slack 5) Microsoft Teams 6) Mattermost 7) External'
+  description: 'Choose your platform：\n1) WeChat \n2) QQ \n3) DingTalk \n4) Slack \n5) Microsoft Teams \n6) Mattermost \n7) External'
   pattern: /^[1-7]$/
 BOT_NAME:
   description: 'Enter a bot name'
