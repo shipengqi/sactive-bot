@@ -58,7 +58,6 @@ function transformPrompt(config) {
     item.message = item.message || `${key} is required.`;
     item.type = 'string';
     result.properties[key] = extend({}, defaultPrompt, item);
-    console.log(result.properties[key])
   });
   return result;
 }
