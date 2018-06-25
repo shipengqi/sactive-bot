@@ -1,15 +1,20 @@
 const path = require('path');
 const prompt = require('prompt');
+const extend = require('extend');
+const _ = require('lodash');
 const colors = require('colors/safe');
 const {ymlHelper} = require('../lib/utils');
-const commonConfig = path.join(__dirname, '..', 'common.yml');
+const commonConfig = path.join(__dirname, 'common.yml');
 
 function create(cmd) {
-  console.log(cmd.config);
-  console.log(cmd.start);
-  let commonData = ymlHelper.get(commonConfig);
-  console.log(commonData);
-  configConsole({properties: commonData});
+  let commonConfigData = ymlHelper.get(commonConfig);
+  let schema = transformPrompt(commonConfigData);
+  configConsole(schema)
+    .then(inputs => {
+      console.log('---------------------');
+      console.log(inputs);
+    })
+    .catch(console.error);
 }
 
 function run(cmd) {
@@ -22,19 +27,43 @@ function createAndRun(cmd) {
 }
 
 function configConsole(schema) {
-  return new Promise(resolve => {
-    prompt.message = colors.green(">");
-    prompt.delimiter = colors.green(">");
+  return new Promise((resolve, reject) => {
+    prompt.message = '';
+    prompt.delimiter = colors.green('>');
     prompt.start();
     prompt.get(schema, (err, result) => {
       if (err) {
-        console.log(err);
+        reject(err);
       }
-      console.log(result);
+      resolve(result);
     });
   });
 }
 
+function transformPrompt(config) {
+  let result = {
+    properties: {}
+  };
+  let defaultPrompt = {
+    description: '',
+    type: 'string',
+    hidden: false,
+    replace: '*',
+    required: true
+  };
+  _.each(config, (item, key) => {
+    item.pattern = eval2(item.pattern);
+    item.description = colors.cyan(item.description);
+    item.message = item.message || `${key} is required.`;
+    result.properties[key] = extend({}, defaultPrompt, item);
+  });
+  return result;
+}
+
+function eval2(string) {
+  let Func = Function;
+  return new Func('return ' + string)();
+}
 module.exports = {
   createAndRun,
   create,
