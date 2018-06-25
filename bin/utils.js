@@ -30,8 +30,8 @@ function createAndRun(cmd) {
 
 function configConsole(schema) {
   return new Promise((resolve, reject) => {
-    prompt.message = '';
-    prompt.delimiter = colors.green('>');
+    prompt.message = colors.cyan('$');
+    prompt.delimiter = colors.cyan('>');
     prompt.start();
     prompt.get(schema, (err, result) => {
       if (err) {

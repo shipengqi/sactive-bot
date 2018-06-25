@@ -4,6 +4,8 @@ PLATFORM:
 BOT_NAME:
   description: 'Enter a bot name'
   pattern: /^.*$/
+  default: 'test'
 BOT_SERVER_PORT:
   description: 'Enter the port of the bot server'
   hidden: true
+  default: 9000
