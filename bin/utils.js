@@ -1,9 +1,10 @@
 const path = require('path');
+const fs = require('fs');
 const prompt = require('prompt');
 const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
-const {ymlHelper} = require('../lib/utils');
+const {ymlHelper, envHelper} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
 const adaptersPath = path.join(__dirname, '../lib/adapters');
@@ -19,12 +20,19 @@ async function create(cmd) {
   let adapterConfigData = ymlHelper.get(CONFIG_MAP.get(Number(platform.PLATFORM)));
   let adapterSchema = transformPrompt(adapterConfigData);
   let schema = extend(true, {}, commonSchema, adapterSchema);
+  if (fs.existsSync(`${__dirname}/wechat.env`)) {
+    let preEnvs = envHelper.get(`${__dirname}/wechat.env`);
+    _.each(schema.properties, (env, key) => {
+      env.default = preEnvs[key];
+    });
+  }
   let envs = await configConsole(schema);
   let allEnvs = extend(true, {}, envs, platform);
-  console.log(allEnvs);
+  envHelper.set(`${__dirname}/wechat.env`, allEnvs);
 }
 
 function run(cmd) {
+  console.log(cmd.start);
   console.log(cmd.name);
 }
 

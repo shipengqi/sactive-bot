@@ -51,7 +51,7 @@ program
     console.log('  Examples:');
     console.log();
     console.log('    $ sbot create');
-    console.log('    $ sbot create -c config.yml');
+    console.log('    $ sbot create -s');
     console.log();
   });
 
