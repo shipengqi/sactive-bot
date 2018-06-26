@@ -21,7 +21,7 @@ program
   .command('run')
   .alias('start')
   .description('start a bot')
-  .option('-n, --name [name]', 'specify bot name')
+  .option('-p, --platform [name]', 'specify platform name')
   .action(cmd => {
     command = cmd;
     run(cmd);
@@ -31,7 +31,7 @@ program
     console.log('  Examples:');
     console.log();
     console.log('    $ sbot start');
-    console.log('    $ sbot start -n bot1');
+    console.log('    $ sbot start -p wechat');
     console.log();
   });
 
