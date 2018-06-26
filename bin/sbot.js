@@ -38,6 +38,7 @@ program
 program
   .command('create')
   .description('create a bot')
+  .option('-c, --config [file]', 'configuration file')
   .option('-s, --start', 'create and start bot')
   .action(cmd => {
     command = cmd;
@@ -52,6 +53,7 @@ program
     console.log();
     console.log('    $ sbot create');
     console.log('    $ sbot create -s');
+    console.log('    $ sbot create -c file -s');
     console.log();
   });
 

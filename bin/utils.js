@@ -4,26 +4,23 @@ const prompt = require('prompt');
 const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
+const {CONFIG_MAP} = require('../lib/constants');
 const {ymlHelper, envHelper} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
-const adaptersPath = path.join(__dirname, '../lib/adapters');
-const CONFIG_MAP = new Map([
-  [1, `${adaptersPath}/wechat/config.yml`]
-]);
+
 async function create(cmd) {
-  let platformConfigData = ymlHelper.get(platformConfig);
-  let platformSchema = transformPrompt(platformConfigData);
-  let commonConfigData = ymlHelper.get(commonConfig);
-  let commonSchema = transformPrompt(commonConfigData);
+  let platformSchema = configToSchema(platformConfig);
+  let commonSchema = configToSchema(commonConfig);
   let platform = await configConsole(platformSchema);
-  let adapterConfigData = ymlHelper.get(CONFIG_MAP.get(Number(platform.PLATFORM)));
-  let adapterSchema = transformPrompt(adapterConfigData);
+  let adapterSchema = configToSchema(CONFIG_MAP.get(Number(platform.PLATFORM)));
   let schema = extend(true, {}, commonSchema, adapterSchema);
   if (fs.existsSync(`${__dirname}/wechat.env`)) {
     let preEnvs = envHelper.get(`${__dirname}/wechat.env`);
     _.each(schema.properties, (env, key) => {
-      env.default = preEnvs[key];
+      if (preEnvs[key]) {
+        env.default = preEnvs[key];
+      }
     });
   }
   let envs = await configConsole(schema);
@@ -53,6 +50,10 @@ function configConsole(schema) {
       resolve(result);
     });
   });
+}
+function configToSchema(configFile) {
+  let configData = ymlHelper.get(configFile);
+  return transformPrompt(configData);
 }
 
 function transformPrompt(config) {

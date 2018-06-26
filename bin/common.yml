@@ -1,3 +1,7 @@
+NODE_ENV:
+  description: 'Enter the environment mode'
+  pattern: /dev[elopment]*|prod[uction]?/
+  default: 'development'
 BOT_NAME:
   description: 'Enter a bot name'
   pattern: /^.*$/
