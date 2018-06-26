@@ -5,37 +5,48 @@ const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
 const {CONFIG_MAP} = require('../lib/constants');
-const {ymlHelper, envHelper} = require('../lib/utils');
+const {ymlHelper, envHelper, eval2} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
 
 async function create(cmd) {
-  let platformSchema = configToSchema(platformConfig);
-  let commonSchema = configToSchema(commonConfig);
-  let platform = await configConsole(platformSchema);
-  let adapterSchema = configToSchema(CONFIG_MAP.get(Number(platform.PLATFORM)));
-  let schema = extend(true, {}, commonSchema, adapterSchema);
-  if (fs.existsSync(`${__dirname}/wechat.env`)) {
-    let preEnvs = envHelper.get(`${__dirname}/wechat.env`);
-    _.each(schema.properties, (env, key) => {
-      if (preEnvs[key]) {
-        env.default = preEnvs[key];
-      }
-    });
+  try {
+    let platformSchema = configToSchema(platformConfig);
+    let commonSchema = configToSchema(commonConfig);
+    let platform = await configConsole(platformSchema);
+    let adapterSchema = configToSchema(CONFIG_MAP.get(Number(platform.PLATFORM)));
+    let schema = extend(true, {}, commonSchema, adapterSchema);
+    if (fs.existsSync(`${__dirname}/wechat.env`)) {
+      let preEnvs = envHelper.get(`${__dirname}/wechat.env`);
+      _.each(schema.properties, (env, key) => {
+        if (preEnvs[key]) {
+          env.default = preEnvs[key];
+        }
+      });
+    }
+    let envs = await configConsole(schema);
+    let allEnvs = extend(true, {}, envs, platform);
+    envHelper.set(`${__dirname}/wechat.env`, allEnvs);
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
   }
-  let envs = await configConsole(schema);
-  let allEnvs = extend(true, {}, envs, platform);
-  envHelper.set(`${__dirname}/wechat.env`, allEnvs);
 }
 
 function run(cmd) {
-  console.log(cmd.start);
-  console.log(cmd.name);
+  if (_.isString(cmd.name)) {
+
+  }
 }
 
 async function createAndRun(cmd) {
-  await create(cmd);
-  run(cmd);
+  try {
+    await create(cmd);
+    run(cmd);
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
 }
 
 function configConsole(schema) {
@@ -76,10 +87,6 @@ function transformPrompt(config) {
   return result;
 }
 
-function eval2(string) {
-  let Func = Function;
-  return new Func('return ' + string)();
-}
 module.exports = {
   createAndRun,
   create,

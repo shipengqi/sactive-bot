@@ -1,9 +1,11 @@
-BOT_NAME:
-  description: 'Enter a bot name'
-  pattern: /^.{1,15}$/
-Skey:
-  description: 'Enter the Skey'
+SBOT_WX_COOKIE:
+  description: 'Enter the WeChat cookie'
   hidden: true
-DeviceID:
-  description: 'Enter the DeviceID'
-  hidden: true
+SBOT_WX_UIN:
+  description: 'Enter the WeChat UIN'
+SBOT_WX_SID:
+  description: 'Enter the WeChat SID'
+SBOT_WX_SKEY:
+  description: 'Enter the WeChat Skey'
+SBOT_WX_DEVICE_ID:
+  description: 'Enter the WeChat device ID'
