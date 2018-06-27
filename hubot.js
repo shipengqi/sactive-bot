@@ -2,14 +2,13 @@ const Path = require('path');
 const _ = require('lodash');
 const env = require('node-env-file');
 const config = require('nconf');
-console.log("-------------22222222222-----------")
 const {
   Sbot,
   createRobotAdapter
 } = require('./lib/sbot');
 const {envHelper} = require('./lib/utils');
-const {OPTION_ENV_PATH, ENV_FILE_MAP, DEFAULT_ENV_PATH} = require('./lib/constants');
-console.log("-------------333333333333333-----------")
+const {ADAPTER_NAME_MAP, OPTION_ENV_PATH, ENV_FILE_MAP, DEFAULT_ENV_PATH} = require('./lib/constants');
+
 process.on('SIGHUP', () => console.error('Received SIGHUP signal from OS, ignoring'));
 
 if (process.platform !== 'win32') {
@@ -21,7 +20,7 @@ let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`
 env(adapterEnvFile);
 
 // TODO: common env vars
-let adapterName = config.get('HUBOT_ADAPTER');
+let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
 let botName = config.get('HUBOT_NAME') || 'HubotEnterprise';
 let botAlias = config.get('HUBOT_ALIAS') || '/';
 let enableHttpd = config.get('HUBOT_HTTPD') || true;
@@ -40,7 +39,6 @@ if (_.isEmpty(scriptPaths)) {
 }
 
 function loadBot() {
-  console.log("------------------------")
   let robot = new Sbot(enableHttpd, botName, botAlias);
   // Create an adapter for robot
   let adapter = createRobotAdapter(adapterName, robot);
