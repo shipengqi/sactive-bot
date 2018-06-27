@@ -4,6 +4,7 @@ const prompt = require('prompt');
 const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
+const shell = require('shelljs');
 const {
   DEFAULT_ADAPTER_CONFIG_FILE,
   CONFIG_PATH_MAP,
@@ -15,6 +16,7 @@ const {
 const {ymlHelper, envHelper, eval2} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
+const START_UP_COMMAND = `${path.join(__dirname, '..')}/node_modules/.bin/coffee ${path.join(__dirname, '../run.coffee')}`;
 
 async function create(cmd) {
   try {
@@ -48,13 +50,32 @@ async function create(cmd) {
 }
 
 function run(cmd) {
-  if (cmd.platform) {
+  let platform = null;
+  if (!cmd.platform) {
+    if (!fs.existsSync(OPTION_ENV_PATH)) {
+      console.error(`The env file ${OPTION_ENV_PATH} was not found.\nPlease run the 'sbot create' or specify the platform, e.g 'sbot run -p wechat'.`);
+      console.error('Exiting ...');
+      process.exit(1);
+    }
+    platform = envHelper.get(OPTION_ENV_PATH).PLATFORM_OPTION;
+  } else {
     if (!ADAPTER_MAP.has(cmd.platform)) {
       console.error(`Platform ${cmd.platform} not supported.`);
       console.error('Exiting ...');
       process.exit(1);
     }
-    run();
+    platform = cmd.platform;
+  }
+
+  let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`;
+  if (!fs.existsSync(adapterEnvFile)) {
+    console.error(`The env file ${adapterEnvFile} was not found.\nPlease run the 'sbot create' firstly.`);
+    console.error('Exiting ...');
+    process.exit(1);
+  }
+  if (shell.exec(START_UP_COMMAND).code !== 0) {
+    shell.echo('Start bot failed.');
+    shell.exit(1);
   }
 }
 
