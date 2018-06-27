@@ -43,6 +43,8 @@
     "hubot-wechat2": "^1.1.0",
     "lodash": "^4.17.10",
     "log": "^1.4.0",
+    "nconf": "^0.10.0",
+    "node-env-file": "^0.1.8",
     "node-yaml": "^3.1.1",
     "prompt": "^1.0.0",
     "sactive-di": "^1.2.0",
