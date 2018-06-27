@@ -61,17 +61,16 @@ function run(cmd) {
       console.error('Exiting ...');
       process.exit(1);
     }
-    platform = envHelper.get(OPTION_ENV_PATH).PLATFORM_OPTION;
+    platform = Number(envHelper.get(OPTION_ENV_PATH).PLATFORM_OPTION);
   } else {
     if (!ADAPTER_MAP.has(cmd.platform)) {
       console.error(`Platform ${cmd.platform} not supported.`);
       console.error('Exiting ...');
       process.exit(1);
     }
-    platform = cmd.platform;
+    platform = ADAPTER_MAP.get(cmd.platform);
   }
-
-  let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`;
+  let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(platform)}`;
   if (!fs.existsSync(adapterEnvFile)) {
     console.error(`The env file ${adapterEnvFile} was not found.\nPlease run the 'sbot create' firstly.`);
     console.error('Exiting ...');
