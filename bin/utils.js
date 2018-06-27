@@ -43,6 +43,10 @@ async function create(cmd) {
     let allEnvs = extend(true, {}, envs, platform);
     envHelper.set(adapterEnvFile, allEnvs);
     envHelper.set(OPTION_ENV_PATH, {PLATFORM_OPTION: platform.PLATFORM});
+    if (!cmd.start) {
+      process.exit(1);
+    }
+    return allEnvs;
   } catch (e) {
     console.error(e.message);
     process.exit(1);
