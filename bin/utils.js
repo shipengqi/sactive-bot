@@ -40,7 +40,7 @@ async function create(cmd) {
     let envs = await configConsole(schema);
     let allEnvs = extend(true, {}, envs, platform);
     envHelper.set(adapterEnvFile, allEnvs);
-    envHelper.set(OPTION_ENV_PATH, {PLATFORM: platform.PLATFORM});
+    envHelper.set(OPTION_ENV_PATH, {PLATFORM_OPTION: platform.PLATFORM});
   } catch (e) {
     console.error(e.message);
     process.exit(1);
@@ -48,19 +48,13 @@ async function create(cmd) {
 }
 
 function run(cmd) {
-  if (!cmd.platform) {
-    let options = envHelper.get(OPTION_ENV_PATH);
-    let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(options.PLATFORM))}`;
-    if (!fs.existsSync(adapterEnvFile)) {
-      console.error(`The env file ${adapterEnvFile} was not found.\nPlease run the 'sbot create' firstly.`);
+  if (cmd.platform) {
+    if (!ADAPTER_MAP.has(cmd.platform)) {
+      console.error(`Platform ${cmd.platform} not supported.`);
       console.error('Exiting ...');
       process.exit(1);
     }
-  }
-  if (!ADAPTER_MAP.has(cmd.platform)) {
-    console.error(`Platform ${cmd.platform} not supported.`);
-    console.error('Exiting ...');
-    process.exit(1);
+    run();
   }
 }
 

@@ -44,6 +44,15 @@ const logger = Helper.getLogger(config);
 let cdfFlag = process.env.ENV_TYPE;
 let adapterEnv = process.env.CHAT_PLATFORM_OPTION;
 
+let options = envHelper.get(OPTION_ENV_PATH);
+let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(options.PLATFORM_OPTION))}`;
+if (!fs.existsSync(adapterEnvFile)) {
+  console.error(`The env file ${adapterEnvFile} was not found.\nPlease run the 'sbot create' firstly.`);
+  console.error('Exiting ...');
+  process.exit(1);
+}
+
+
 if (!(cdfFlag === "kubernetes")) {
   let optionEnvFile = ENV_FILE_TYPE.OPTION;
   if (!fs.existsSync(optionEnvFile)) {
