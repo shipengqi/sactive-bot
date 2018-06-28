@@ -2,7 +2,7 @@
 const {
   createWarning,
   createSuccess
-} = require('../lib/conversation');
+} = require('../lib/conversation/index');
 
 module.exports = function(robot) {
   const switchBoard = robot.e.createDialog(robot);

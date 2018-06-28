@@ -59,13 +59,13 @@ function loadBot() {
       } else {
         scriptPath = Path.resolve('.', path);
       }
-      robot.load(scriptPath);
+      // robot.load(scriptPath);
     }
 
     // Removed hubot-scripts.json usage since it is deprecated
     // https://github.com/github/hubot-scripts
     if (externalScripts && (externalScripts.length > 0)) {
-      robot.loadExternalScripts(externalScripts);
+      // robot.loadExternalScripts(externalScripts);
     }
   });
   robot.run();
