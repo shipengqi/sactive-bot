@@ -19,7 +19,6 @@ let platform = envHelper.get(OPTION_ENV_PATH).PLATFORM_OPTION;
 let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`;
 env(adapterEnvFile);
 
-// TODO: common env vars
 let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
 let botName = config.get('HUBOT_NAME') || 'HubotEnterprise';
 let botAlias = config.get('HUBOT_ALIAS') || '/';
