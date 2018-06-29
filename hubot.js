@@ -20,22 +20,9 @@ let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`
 env(adapterEnvFile);
 
 let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
-let botName = config.get('HUBOT_NAME') || 'HubotEnterprise';
+let botName = config.get('HUBOT_NAME') || 'this.';
 let botAlias = config.get('HUBOT_ALIAS') || '/';
 let enableHttpd = config.get('HUBOT_HTTPD') || true;
-let scriptPaths = config.get('HUBOT_SCRIPTS') || '';
-let externalScripts = config.get('HUBOT_NODE_MODULES') || '';
-
-// Convert external script (hubot-*) scripts into an array
-externalScripts = _.compact(_.split(externalScripts, ' '));
-if (_.isEmpty(externalScripts)) {
-  externalScripts = [];
-}
-
-scriptPaths = _.compact(_.split(scriptPaths, ' '));
-if (_.isEmpty(scriptPaths)) {
-  scriptPaths = [];
-}
 
 function loadBot() {
   let robot = new Sbot(enableHttpd, botName, botAlias);
@@ -52,21 +39,9 @@ function loadBot() {
     robot.load(scriptsPath);
 
     // Load Hubot scripts from an additional specified path
-    for (let path of Array.from(scriptPaths)) {
-      let scriptPath = '';
-      if (path[0] === '/') {
-        scriptPath = path;
-      } else {
-        scriptPath = Path.resolve('.', path);
-      }
-      // robot.load(scriptPath);
-    }
 
     // Removed hubot-scripts.json usage since it is deprecated
     // https://github.com/github/hubot-scripts
-    if (externalScripts && (externalScripts.length > 0)) {
-      // robot.loadExternalScripts(externalScripts);
-    }
   });
   robot.run();
 }

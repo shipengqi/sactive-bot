@@ -8,14 +8,14 @@ HTTP_PROXY_ENDPOINT:
   pattern: /^(https|http):\/\/[^\s]*/
   message: 'Enter the HTTP proxy endpoint with a correct format.'
   required: false
-SCRIPTS_PATH:
+SBOT_SCRIPTS:
   description: 'Enter the script path (optional)'
   required: false
-BOT_NAME:
+SBOT_NAME:
   description: 'Enter a bot name'
   pattern: /^.{1,15}$/
   message: 'Your bot name is 15 character limit.'
-BOT_SERVER_PORT:
+SBOT_SERVER_PORT:
   description: 'Bot server port'
   pattern: /^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/
   message: 'A bot server port (between 1 and 65535) is required.'
