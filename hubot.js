@@ -1,11 +1,11 @@
 const Path = require('path');
 const _ = require('lodash');
 const env = require('node-env-file');
-const config = require('nconf');
 const {
   Sbot,
   createRobotAdapter
 } = require('./lib/sbot');
+const {envs} = require('./lib/utils');
 const {
   ADAPTER_NAME_MAP,
   OPTION_ENV_PATH,
@@ -20,16 +20,16 @@ if (process.platform !== 'win32') {
 }
 
 env(OPTION_ENV_PATH);
-let platform = config.get('PLATFORM_OPTION');
+let platform = envs('PLATFORM_OPTION');
 let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`;
 env(adapterEnvFile);
 
 let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
-let botName = config.get('SBOT_NAME') || 'Sbot';
-let specifiedScripts = config.get('SBOT_SCRIPTS') || '';
-let externalModules = config.get('SBOT_HUBOT_MODULES') || '';
-let botAlias = config.get('SBOT_ALIAS') || '/';
-let enableHttpd = config.get('SBOT_HUBOT_HTTPD') || true;
+let botName = envs('SBOT_NAME') || 'Sbot';
+let specifiedScripts = envs('SBOT_SCRIPTS') || '';
+let externalModules = envs('SBOT_HUBOT_MODULES') || '';
+let botAlias = envs('SBOT_ALIAS') || '/';
+let enableHttpd = envs('SBOT_HUBOT_HTTPD') || true;
 
 function loadBot() {
   let robot = new Sbot(enableHttpd, botName, botAlias);
