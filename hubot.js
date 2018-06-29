@@ -1,7 +1,7 @@
 const Path = require('path');
 const _ = require('lodash');
 const env = require('node-env-file');
-const {Sbot, createRobotAdapter} = require('./lib/sbot');
+const {createRobotAdapter} = require('./lib/sbot');
 const {injector, loadBinders} = require('./lib/binders');
 loadBinders();
 
@@ -25,15 +25,11 @@ let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`
 env(adapterEnvFile);
 
 let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
-let botName = envs('SBOT_NAME');
 let specifiedScripts = envs('SBOT_SCRIPTS') || '';
 let externalModules = envs('SBOT_HUBOT_MODULES') || '';
-let botAlias = envs('SBOT_ALIAS') || '/';
-let enableHttpd = envs('SBOT_HUBOT_HTTPD') || true;
 
 function loadBot() {
-  let logger = injector.getInstance('$$logger');
-  let robot = new Sbot(enableHttpd, botName, botAlias, logger);
+  let robot = injector.getInstance('$$sbot');
   // Create an adapter for robot
   let adapter = createRobotAdapter(adapterName, robot);
 
