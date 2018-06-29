@@ -1,17 +1,7 @@
 const Path = require('path');
 const _ = require('lodash');
 const env = require('node-env-file');
-const {
-  Sbot,
-  createRobotAdapter
-} = require('./lib/sbot');
-// const {envs} = require('./lib/utils');
-// const {
-//   ADAPTER_NAME_MAP,
-//   OPTION_ENV_PATH,
-//   ENV_FILE_MAP,
-//   DEFAULT_ENV_PATH
-// } = require('./lib/constants');
+const {Sbot, createRobotAdapter} = require('./lib/sbot');
 const {injector, loadBinders} = require('./lib/binders');
 loadBinders();
 
@@ -40,7 +30,7 @@ let specifiedScripts = envs('SBOT_SCRIPTS') || '';
 let externalModules = envs('SBOT_HUBOT_MODULES') || '';
 let botAlias = envs('SBOT_ALIAS') || '/';
 let enableHttpd = envs('SBOT_HUBOT_HTTPD') || true;
-console.log('--------------------label', envs('SBOT_LOG_LABEL'));
+
 function loadBot() {
   let logger = injector.getInstance('$$logger');
   let robot = new Sbot(enableHttpd, botName, botAlias, logger);
