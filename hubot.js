@@ -5,13 +5,23 @@ const {
   Sbot,
   createRobotAdapter
 } = require('./lib/sbot');
-const {envs} = require('./lib/utils');
+// const {envs} = require('./lib/utils');
+// const {
+//   ADAPTER_NAME_MAP,
+//   OPTION_ENV_PATH,
+//   ENV_FILE_MAP,
+//   DEFAULT_ENV_PATH
+// } = require('./lib/constants');
+const {injector, loadBinders} = require('./lib/binders');
+loadBinders();
+
 const {
   ADAPTER_NAME_MAP,
   OPTION_ENV_PATH,
   ENV_FILE_MAP,
   DEFAULT_ENV_PATH
-} = require('./lib/constants');
+} = injector.getInstance('$$constants');
+const {envs} = injector.getInstance('$$utils');
 
 process.on('SIGHUP', () => console.error('Received SIGHUP signal from OS, ignoring'));
 
@@ -25,14 +35,15 @@ let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`
 env(adapterEnvFile);
 
 let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
-let botName = envs('SBOT_NAME') || 'Sbot';
+let botName = envs('SBOT_NAME');
 let specifiedScripts = envs('SBOT_SCRIPTS') || '';
 let externalModules = envs('SBOT_HUBOT_MODULES') || '';
 let botAlias = envs('SBOT_ALIAS') || '/';
 let enableHttpd = envs('SBOT_HUBOT_HTTPD') || true;
-
+console.log('--------------------label', envs('SBOT_LOG_LABEL'));
 function loadBot() {
-  let robot = new Sbot(enableHttpd, botName, botAlias);
+  let logger = injector.getInstance('$$logger');
+  let robot = new Sbot(enableHttpd, botName, botAlias, logger);
   // Create an adapter for robot
   let adapter = createRobotAdapter(adapterName, robot);
 

@@ -11,9 +11,10 @@ const {
   ENV_FILE_MAP,
   DEFAULT_ENV_PATH,
   OPTION_ENV_PATH,
-  ADAPTER_MAP
+  ADAPTER_MAP,
+  ENVS
 } = require('../lib/constants');
-const {ymlHelper, envHelper, eval2} = require('../lib/utils');
+const {ymlHelper, envHelper, eval2, mkdirp} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
 const START_UP_COMMAND = `${path.join(__dirname, '..')}/node_modules/.bin/coffee ${path.join(__dirname, '../run.coffee')}`;
@@ -40,9 +41,11 @@ async function create(cmd) {
       });
     }
     let envs = await configConsole(schema);
-    let allEnvs = extend(true, {}, envs, platform);
+    let specifiedEnvs = extend(true, {}, envs, platform);
+    let allEnvs = generateEnvs(specifiedEnvs);
     envHelper.set(adapterEnvFile, allEnvs);
     envHelper.set(OPTION_ENV_PATH, {PLATFORM_OPTION: platform.PLATFORM});
+    mkdirRequiredFolders(allEnvs);
     if (!cmd.start) {
       process.exit(1);
     }
@@ -128,6 +131,27 @@ function transformPrompt(config) {
     result.properties[key] = extend({}, defaultPrompt, item);
   });
   return result;
+}
+
+function generateEnvs(envs) {
+  let modeEnvs = {};
+  let defaultEnvs = envs.NODE_ENV === 'production' ? ENVS.PRODUCTION : ENVS.DEVELOPMENT;
+  if (envs.NODE_ENV === 'production') {
+    modeEnvs.SBOT_LOG_FILE_TIME = envs('SBOT_LOG_FILE_TIME');
+    modeEnvs.SBOT_LOG_LEVEL = envs('SBOT_LOG_LEVEL');
+    modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
+    modeEnvs.SBOT_LOG_DIR = envs('SBOT_LOG_DIR');
+    modeEnvs.SBOT_CERTS_DIR = envs('SBOT_CERTS_DIR');
+    modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
+  }
+
+  return extend(true, {}, envs, defaultEnvs, modeEnvs);
+}
+
+function mkdirRequiredFolders(envs) {
+  mkdirp(envs.SBOT_LOG_DIR);
+  mkdirp(envs.SBOT_CERTS_DIR);
+  mkdirp(envs.SBOT_PACKAGES_DIR);
 }
 
 module.exports = {
