@@ -12,6 +12,7 @@
 - msteams
   - https://github.com/Microsoft/BotFramework-Hubot
 - conversation
+- api authentication
 - api command receiver
 - adapter
   - external adapter

@@ -1,5 +1,5 @@
-const path = require('path');
-const extend = require('extend');
-console.log(path.join(`${__dirname}/adapters/wechat`, 'config.yaml'))
-console.log(path.resolve(".", "src", "scripts"))
-console.log(extend(true,{test: 2}, {test: 'hh'}, {test: process.env.test}))
+let name = 'this.';
+let alias = '/';
+let botNameReg = new RegExp(`^(@?(?:${name}|${alias}):?)+( )+(.*)`, "i");
+let message = '@this.skdhfjshdfs'
+console.log(botNameReg.test(message))
