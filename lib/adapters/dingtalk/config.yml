@@ -1,9 +1,0 @@
-BOT_NAME:
-  description: 'Enter a bot name'
-  pattern: /^.{1,15}$/
-Skey:
-  description: 'Enter the Skey'
-  hidden: true
-DeviceID:
-  description: 'Enter the DeviceID'
-  hidden: true

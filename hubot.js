@@ -13,11 +13,17 @@ const {
 } = injector.getInstance('$$constants');
 const {envs} = injector.getInstance('$$utils');
 
-process.on('SIGHUP', () => console.error('Received SIGHUP signal from OS, ignoring'));
-
 if (process.platform !== 'win32') {
   process.on('SIGTERM', () => process.exit(0));
 }
+process.on('SIGHUP', () => console.error('Received SIGHUP signal from OS, ignoring'));
+process.on('uncaughtException', err => {
+  console.error(`Uncaught exception : ${err.message}`);
+  console.error(err.stack);
+});
+process.on('unhandledRejection', (reason, p) => {
+  console.error(`Unhandled rejection : ${p}, reason: ${reason}`);
+});
 
 env(OPTION_ENV_PATH);
 let platform = envs('PLATFORM_OPTION');

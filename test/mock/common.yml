@@ -1,9 +1,22 @@
-PLATFORM:
-  description: 'Choose your platform：1) WeChat 2) QQ 3) DingTalk 4) Slack 5) Microsoft Teams 6) Mattermost 7) External'
-  pattern: /^[1-7]$/
-BOT_NAME:
+NODE_ENV:
+  description: 'Enter the environment mode'
+  pattern: /dev[elopment]*|prod[uction]?/
+  message: 'Input development or production.'
+  default: 'development'
+HTTP_PROXY_ENDPOINT:
+  description: 'HTTP proxy endpoint (optional)'
+  pattern: /^(https|http):\/\/[^\s]*/
+  message: 'Enter the HTTP proxy endpoint with a correct format.'
+  required: false
+SBOT_SCRIPTS:
+  description: 'Enter the script path (optional)'
+  required: false
+SBOT_NAME:
   description: 'Enter a bot name'
-  pattern: /^.*$/
-BOT_SERVER_PORT:
-  description: 'Enter the port of the bot server'
-  hidden: true
+  pattern: /^.{1,15}$/
+  message: 'Your bot name is 15 character limit.'
+SBOT_SERVER_PORT:
+  description: 'Bot server port'
+  pattern: /^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/
+  message: 'A bot server port (between 1 and 65535) is required.'
+  default: 8081
