@@ -14,6 +14,9 @@ module.exports = robot => {
   let buildExtraRegex = function(info, integrationName) {
     // default values set for backward compatibility
     let defaultSuffix = {re: null, optional: true};
+    if (!info.regexSuffix) {
+      info.regexSuffix = {};
+    }
     if (!_.isObject(info.regexSuffix)) {
       throw new Error('info.regexSuffix MUST be an object.');
     }
@@ -75,12 +78,15 @@ module.exports = robot => {
       throw new Error(`callback is not a function but a ${handlerType}.`);
     }
     info.cb = callback;
+    if (!info.integrationName) {
+      throw new Error(`integrationName is required.`);
+    }
     let integrationName = info.integrationName.toLowerCase();
     if (!robot.$.registrar.apps.has(integrationName)) {
-      throw new Error(`cannot register listener for ${integrationName}, integration ${integrationName} not registered, please use robot.e.registerIntegration.`);
+      throw new Error(`Cannot register listener for ${integrationName}, integration ${integrationName} not registered, please use robot.e.registerIntegration.`);
     }
     let regex = buildRegex(info, integrationName);
-    robot.$.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
+    robot.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
     robot[info.type](regex, msg => callback(msg, robot));
   };
 

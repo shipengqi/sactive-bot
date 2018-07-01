@@ -41,6 +41,7 @@ function loadBot() {
 
   // Associate adapter with robot (really bad coupling from Hubot's design)
   robot.loadAdapter(adapter);
+  robot._middlewares.loadMiddlewares(robot);
   robot.logger.info(`Running hubot version ${robot.version}`);
 
   robot.adapter.once('connected', () => {
