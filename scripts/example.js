@@ -9,6 +9,6 @@ module.exports = robot => {
     entity: 'sbot',
     integrationName: 'test'
   }, msg => {
-    msg.reply('This is wechat bot testing, please ignore ...');
+    msg.reply('This is wechat bot, please ignore this message ...');
   });
 };

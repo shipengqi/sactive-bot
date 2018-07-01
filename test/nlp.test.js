@@ -9,11 +9,11 @@ const classifier = new natural.BayesClassifier();
 classifier.addDocument('i am long qqqq', 'buy');
 classifier.addDocument('buy the q\'s', 'buy');
 classifier.addDocument('short gold', 'sell');
-classifier.addDocument('的疯狂的金凤凰', 'test');
-classifier.addDocument('客户反馈', 'test');
-classifier.addDocument('地方看到回复', 'test');
+classifier.addDocument('my unit-tests failed.', 'software');
+classifier.addDocument('tried the program, but it was buggy.', 'software');
+classifier.addDocument('the drive has a 2TB capacity.', 'hardware');
+classifier.addDocument('i need a new power supply.', 'hardware');
 classifier.events.on('trainedWithDocument', function (obj) {
-  console.log(obj);
   /* {
   *   total: 23 // There are 23 total documents being trained against
   *   index: 12 // The index/number of the document that's just been trained against
@@ -23,4 +23,6 @@ classifier.events.on('trainedWithDocument', function (obj) {
 });
 classifier.train();
 
-console.log(classifier.classify('i am short silver'));
+classifier.save('classifier.json', function(err, classifier) {
+  // the classifier is saved to the classifier.json file!
+});

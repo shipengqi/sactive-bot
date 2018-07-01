@@ -21,6 +21,7 @@
 - scripts hot reload
 - help
 - script register
+- training page
 
 ## config yaml
 ```yml
