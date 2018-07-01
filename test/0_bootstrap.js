@@ -294,7 +294,7 @@ module.exports = function(robot) {
       cmd += ` ${info.entity}`;
     }
     robot.commands.push(cmd);
-    robot.logger.info('HE registering call:\n' +
+    robot.logger.info('Sbot registering call:\n' +
       `\trobot.${info.type} ${re.toString()}`);
 
     // TODO: refactor this into its own function
