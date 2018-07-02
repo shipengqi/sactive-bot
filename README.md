@@ -22,7 +22,8 @@
 - help
 - script register
 - training page
-
+- tty.js
+  - http://blog.fens.me/nodejs-linux-sh-tty/
 ## config yaml
 ```yml
 - BOT_NAME:
