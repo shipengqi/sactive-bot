@@ -1,0 +1,4 @@
+ADAPTER_NAME:
+  description: 'Enter the external adapter name'
+ADAPTER_PATH:
+  description: 'Enter the external adapter path'
