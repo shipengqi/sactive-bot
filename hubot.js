@@ -5,12 +5,7 @@ const {createRobotAdapter} = require('./lib/sbot');
 const {injector, loadBinders} = require('./lib/binders');
 loadBinders();
 
-const {
-  ADAPTER_NAME_MAP,
-  OPTION_ENV_PATH,
-  ENV_FILE_MAP,
-  DEFAULT_ENV_PATH
-} = injector.getInstance('$$constants');
+const {OPTION_ENV_PATH} = injector.getInstance('$$constants');
 const {envs} = injector.getInstance('$$utils');
 
 if (process.platform !== 'win32') {
@@ -26,11 +21,10 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 env(OPTION_ENV_PATH);
-let platform = envs('PLATFORM_OPTION');
-let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(Number(platform))}`;
+let adapterEnvFile = envs('ADAPTER_ENV_FILE');
 env(adapterEnvFile);
 
-let adapterName = ADAPTER_NAME_MAP.get(Number(platform));
+let adapterName = envs('ADAPTER_NAME');
 let specifiedScripts = envs('SBOT_SCRIPTS') || '';
 let externalModules = envs('SBOT_HUBOT_MODULES') || '';
 

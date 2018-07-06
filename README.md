@@ -3,10 +3,6 @@
 ## TODO
 - wechat
   - api
-- qq adapter
-  - https://github.com/xhan/qqbot
-  - https://github.com/floatinghotpot/qqbot
-  - proxy
 - botkit
   - https://github.com/howdyai/botkit
 - msteams
@@ -22,8 +18,7 @@
 - help
 - script register
 - training page
-- tty.js
-  - http://blog.fens.me/nodejs-linux-sh-tty/
+- gritty
 ## config yaml
 ```yml
 - BOT_NAME:
