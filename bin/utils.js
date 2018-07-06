@@ -5,6 +5,7 @@ const extend = require('extend');
 const _ = require('lodash');
 const colors = require('colors/safe');
 const shell = require('shelljs');
+const uniqid = require('uniqid');
 const {
   DEFAULT_ADAPTER_CONFIG_FILE,
   CONFIG_PATH_MAP,
@@ -99,6 +100,8 @@ async function create(cmd) {
     };
     // generate all env values
     let allEnvs = generateEnvs(specifiedEnvs);
+    // genarate uniqueId for bot
+    allEnvs.SBOT_UNIQUE_ID = uniqid();
     // generate or update env file
     envHelper.set(adapterEnvFile, allEnvs);
     envHelper.set(OPTION_ENV_PATH, optionEnvs);
