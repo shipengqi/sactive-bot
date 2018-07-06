@@ -88,6 +88,8 @@ module.exports = robot => {
     let regex = buildRegex(info, integrationName);
     robot.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
     robot[info.type](regex, msg => callback(msg, robot));
+    // Auto add registered command to training document
+    robot.nlp.addDocument(`${info.verb} ${info.entity}`, `${integrationName} ${info.verb} ${info.entity}`);
   };
 
   robot.$.registerIntegration = function(metadata, authentication) {
@@ -111,7 +113,7 @@ module.exports = robot => {
     }
     metadata.longDesc = metadata.longDesc || metadata.shortDesc;
 
-    robot.logger.debug(`Successfully registerd ${integrationName} with:`);
+    robot.logger.debug(`Successfully registered ${integrationName} with:`);
     robot.logger.debug(`Meta = ${JSON.stringify(metadata)}`);
     return robot.$.registrar.apps.set(integrationName, {
       metadata,
@@ -136,7 +138,7 @@ module.exports = robot => {
     }
     let callbackKey = `${integrationName}_${callbackId}`;
 
-    robot.logger.info(`Successfully registerd function ${callbackKey}.`);
+    robot.logger.info(`Successfully registered function ${callbackKey}.`);
 
     return robot.$.APICallbacks.set(callbackKey, callback);
   };
