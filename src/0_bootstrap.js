@@ -88,8 +88,6 @@ module.exports = robot => {
     let regex = buildRegex(info, integrationName);
     robot.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
     robot[info.type](regex, msg => callback(msg, robot));
-    // Auto add registered command to training document
-    robot.nlp.addDocument(`${info.verb} ${info.entity}`, `${integrationName} ${info.verb} ${info.entity}`);
   };
 
   robot.$.registerIntegration = function(metadata, authentication) {
