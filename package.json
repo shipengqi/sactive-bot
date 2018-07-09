@@ -37,6 +37,7 @@
     "commander": "^2.15.1",
     "extend": "^3.0.1",
     "hubot": "^2.19.0",
+    "hubot-matteruser": "^4.4.0",
     "js-yaml": "^3.12.0",
     "lodash": "^4.17.10",
     "natural": "^0.6.1",

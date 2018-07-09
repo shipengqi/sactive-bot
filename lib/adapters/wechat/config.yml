@@ -12,12 +12,12 @@ SBOT_WX_DEVICE_ID:
 SBOT_WX_ACCEPT_FRIEND:
   description: 'Auto accept frient request'
   pattern: /y[es]*|n[o]?/
-  message: 'Input development or production.'
+  message: 'Input yes or no'
   default: 'no'
   required: false
 SBOT_WX_IGNORE_GROUP:
   description: 'Ignore message from group'
   pattern: /y[es]*|n[o]?/
-  message: 'Input development or production.'
+  message: 'Input yes or no'
   default: 'no'
   required: false
