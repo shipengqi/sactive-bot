@@ -24,6 +24,14 @@ env(OPTION_ENV_PATH);
 let adapterEnvFile = envs('ADAPTER_ENV_FILE');
 env(adapterEnvFile);
 
+let proxy = envs('HTTP_PROXY_ENDPOINT');
+if (proxy) {
+  process.env.http_proxy = process.env.HTTP_PROXY = proxy;
+  if (!process.env.HTTPS_PROXY && !process.env.https_proxy) {
+    process.env.https_proxy = process.env.HTTPS_PROXY = proxy;
+  }
+}
+
 let adapterName = envs('ADAPTER_NAME');
 let specifiedScripts = envs('SBOT_SCRIPTS') || '';
 let externalModules = envs('SBOT_HUBOT_MODULES') || '';

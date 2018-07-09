@@ -7,16 +7,17 @@
   - https://github.com/howdyai/botkit
 - msteams
   - https://github.com/Microsoft/BotFramework-Hubot
+- mattermost
+  - https://www.npmjs.com/package/hubot-matteruser
+  - https://api.mattermost.com/
 - conversation
 - api authentication
 - api command receiver
-- adapter
-  - external adapter
+- crypto all sensitive information
 - docker version
 - kubernetes yaml file
 - scripts hot reload
 - help
-- script register
 - training page
 - gritty
 ## config yaml

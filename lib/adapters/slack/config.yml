@@ -1,9 +1,4 @@
-BOT_NAME:
-  description: 'Enter a bot name'
-  pattern: /^.{1,15}$/
-Skey:
-  description: 'Enter the Skey'
-  hidden: true
-DeviceID:
-  description: 'Enter the DeviceID'
+HUBOT_SLACK_TOKEN:
+  description: 'Enter the Slack token'
+  message: 'A token for Slack bot is required.'
   hidden: true
