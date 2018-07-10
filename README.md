@@ -1,5 +1,42 @@
 # sactive-bot
 
+## Installation
+```bash
+npm install sactive-bot
+```
+
+## Get started
+
+### create a bot
+```bash
+sbot create
+```
+**Options**
+```bash
+Options:
+  --help, -h
+    Output usage information
+
+  --start, -s
+    start up bot after created
+```
+
+### start up bot
+```bash
+sbot run
+#or
+sbot start
+```
+**Options**
+```bash
+Options:
+  --help, -h
+    Output usage information
+
+  --platform, -p
+    specify the bot platform
+```
+
 ## TODO
 - wechat
   - api
@@ -13,10 +50,8 @@
   - api
     - https://github.com/slackapi/hubot-slack
 - msteams
-  - https://github.com/Microsoft/BotFramework-Hubot
-  - https://botkit.ai/docs/readme-teams.html
-  - https://botkit.ai/docs/provisioning/teams.html
-  - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
+  - api
+    - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
 - conversation
 - api
   - command receiver

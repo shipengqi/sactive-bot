@@ -1,9 +1,17 @@
-BOT_NAME:
-  description: 'Enter a bot name'
-  pattern: /^.{1,15}$/
-Skey:
-  description: 'Enter the Skey'
+BOTBUILDER_APP_ID:
+  description: 'Microsoft APP ID'
+  pattern: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+  message: 'Enter the Microsoft APP ID with a correct format.'
+BOTBUILDER_APP_PASSWORD:
+  description: 'Microsoft APP password'
+  message: 'A Microsoft APP password is required.'
   hidden: true
-DeviceID:
-  description: 'Enter the DeviceID'
+HUBOT_OFFICE365_TENANT_FILTER:
+  description: 'Microsoft tenant ID:'
+  pattern: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+  message: 'Enter the Microsoft tenant ID with a correct format.'
   hidden: true
+BOTBUILDER_ENDPOINT:
+  description: 'Enter a custom HTTP endpoint'
+  default: '/api/messages'
+  required: false

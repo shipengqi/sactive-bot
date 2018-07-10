@@ -37,6 +37,7 @@
     "commander": "^2.15.1",
     "extend": "^3.0.1",
     "hubot": "^2.19.0",
+    "hubot-botframework": "^0.10.1",
     "hubot-matteruser": "^4.4.0",
     "hubot-slack": "^4.5.2",
     "js-yaml": "^3.12.0",
