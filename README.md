@@ -1,4 +1,5 @@
 # sactive-bot
+An extensible chat bot framework.
 
 ## Installation
 ```bash
@@ -53,10 +54,11 @@ Options:
   - api
     - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
 - conversation
-- api
+- api server
   - command receiver
   - command authentication
   - api authentication
+- render card
 - crypto all sensitive information
 - docker version
 - kubernetes yaml file
