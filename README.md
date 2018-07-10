@@ -37,8 +37,22 @@ Options:
   --platform, -p
     specify the bot platform
 ```
-
+## Framework
+### Flow
 ## TODO
+- conversation
+- api server
+  - command authentication
+  - api authentication
+- render card
+- crypto all sensitive information
+- docker version
+- kubernetes yaml file
+- scripts hot reload
+- help module
+- nlp
+  - training page
+- gritty
 - wechat
   - api
     - https://github.com/Urinx/WeixinBot
@@ -53,19 +67,6 @@ Options:
 - msteams
   - api
     - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
-- conversation
-- api server
-  - command receiver
-  - command authentication
-  - api authentication
-- render card
-- crypto all sensitive information
-- docker version
-- kubernetes yaml file
-- scripts hot reload
-- help
-- training page
-- gritty
 
 ## config yaml
 ```yml
