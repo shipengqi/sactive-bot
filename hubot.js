@@ -2,6 +2,7 @@ const Path = require('path');
 const _ = require('lodash');
 const env = require('node-env-file');
 const {createRobotAdapter} = require('./lib/sbot');
+const botServer = require('./lib/api');
 const {injector, loadBinders} = require('./lib/binders');
 loadBinders();
 
@@ -15,12 +16,13 @@ if (process.platform !== 'win32') {
 process.on('SIGHUP', () => console.error('Received SIGHUP signal from OS, ignoring'));
 // uncaught exception handle
 process.on('uncaughtException', err => {
-  console.error(`Uncaught exception : ${err.message}`);
-  console.error(err.stack);
+  console.error(`Uncaught exception:`);
+  console.error(err);
 });
 // unhandled rejection
 process.on('unhandledRejection', (reason, p) => {
-  console.error(`Unhandled rejection : ${p}, reason: ${reason}`);
+  console.error(`Unhandled rejection: `);
+  console.log(p);
 });
 
 env(OPTION_ENV_PATH);
@@ -49,6 +51,9 @@ function loadBot() {
   robot._middlewares.loadMiddlewares(robot);
   robot.logger.info(`Running hubot version ${robot.version}`);
 
+  // start bot server
+  robot.sbotApp = botServer.use(robot);
+  // load scripts after connected
   robot.adapter.once('connected', () => {
     // Load Default scripts in path
     let srcPath = `${__dirname}/src`;

@@ -17,7 +17,7 @@ const {
   ADAPTER_NAME_MAP,
   ENVS
 } = require('../lib/constants');
-const {ymlHelper, envHelper, eval2, mkdirp} = require('../lib/utils');
+const {ymlHelper, envHelper, eval2, mkdirp, envs} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
 const externalConfig = path.join(__dirname, 'external.yml');
@@ -90,8 +90,8 @@ async function create(cmd) {
     }
 
     // schema prompt
-    let envs = await configConsole(schema);
-    let specifiedEnvs = extend(true, {}, envs, {PLATFORM: platform.PLATFORM});
+    let envVars = await configConsole(schema);
+    let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM});
     let optionEnvs = {
       PLATFORM_OPTION: platform.PLATFORM,
       ADAPTER_NAME: adapterName,
@@ -197,10 +197,11 @@ function transformPrompt(config) {
   return result;
 }
 
-function generateEnvs(envs) {
+function generateEnvs(envVars) {
   let modeEnvs = {};
-  let defaultEnvs = envs.NODE_ENV === 'production' ? ENVS.PRODUCTION : ENVS.DEVELOPMENT;
-  if (envs.NODE_ENV === 'production') {
+  let defaultEnvs = envVars.NODE_ENV === 'production' ? ENVS.PRODUCTION : ENVS.DEVELOPMENT;
+  // can be configured in production
+  if (envVars.NODE_ENV === 'production') {
     modeEnvs.SBOT_LOG_FILE_TIME = envs('SBOT_LOG_FILE_TIME');
     modeEnvs.SBOT_LOG_LEVEL = envs('SBOT_LOG_LEVEL');
     modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
@@ -208,14 +209,17 @@ function generateEnvs(envs) {
     modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
     modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
   }
+  // can be configured in development
+  modeEnvs.SBOT_WECHAT_AUTH_PORT = envs('SBOT_WECHAT_AUTH_PORT') || defaultEnvs.SBOT_WECHAT_AUTH_PORT;
+  modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
 
-  return extend(true, {}, envs, defaultEnvs, modeEnvs);
+  return extend(true, {}, envVars, defaultEnvs, modeEnvs);
 }
 
-function mkdirRequiredFolders(envs) {
-  mkdirp(envs.SBOT_LOG_DIR);
-  mkdirp(envs.SBOT_TRAINING_DATA_DIR);
-  mkdirp(envs.SBOT_PACKAGES_DIR);
+function mkdirRequiredFolders(allEnvs) {
+  mkdirp(allEnvs.SBOT_LOG_DIR);
+  mkdirp(allEnvs.SBOT_TRAINING_DATA_DIR);
+  mkdirp(allEnvs.SBOT_PACKAGES_DIR);
 }
 
 module.exports = {
