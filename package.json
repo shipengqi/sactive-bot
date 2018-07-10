@@ -52,7 +52,8 @@
     "shelljs": "^0.8.2",
     "uniqid": "^5.0.3",
     "winston": "^3.0.0",
-    "winston-daily-rotate-file": "^3.2.3"
+    "winston-daily-rotate-file": "^3.2.3",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "chai": "^4.1.2",

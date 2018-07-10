@@ -3,6 +3,7 @@
 ## TODO
 - wechat
   - api
+  - QRCode terminal
 - mattermost
   - api
     - https://www.npmjs.com/package/hubot-matteruser
