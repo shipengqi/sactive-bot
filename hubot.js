@@ -80,7 +80,13 @@ function loadBot() {
       robot.loadExternalScripts(externalModulesPaths);
     }
   });
-  robot.run();
+
+  try {
+    robot.run();
+  } catch (e) {
+    robot.logger.error(`Start failed, reason: ${e.message}`);
+    robot.logger.debug(e);
+  }
 }
 
 loadBot();

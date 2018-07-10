@@ -3,6 +3,7 @@
 ## TODO
 - wechat
   - api
+    - https://github.com/Urinx/WeixinBot
   - QRCode terminal
 - mattermost
   - api
