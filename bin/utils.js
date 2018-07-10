@@ -206,7 +206,6 @@ function generateEnvs(envs) {
     modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
     modeEnvs.SBOT_LOG_DIR = envs('SBOT_LOG_DIR');
     modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
-    modeEnvs.SBOT_CERTS_DIR = envs('SBOT_CERTS_DIR');
     modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
   }
 
@@ -215,7 +214,6 @@ function generateEnvs(envs) {
 
 function mkdirRequiredFolders(envs) {
   mkdirp(envs.SBOT_LOG_DIR);
-  mkdirp(envs.SBOT_CERTS_DIR);
   mkdirp(envs.SBOT_TRAINING_DATA_DIR);
   mkdirp(envs.SBOT_PACKAGES_DIR);
 }

@@ -20,3 +20,15 @@ SBOT_SERVER_PORT:
   pattern: /^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/
   message: 'A bot server port (between 1 and 65535) is required.'
   default: 8081
+SBOT_ENABLE_TLS:
+  description: 'Enable the TLS for bot server'
+  pattern: /y[es]*|n[o]?/
+  message: 'Input yes or no'
+  default: 'no'
+  required: false
+SBOT_CERT_FILE_PATH:
+  description: 'Enter the cert file path if enable the TLS'
+  required: false
+SBOT_KEY_FILE_PATH:
+  description: 'Enter the key file path if enable the TLS'
+  required: false
