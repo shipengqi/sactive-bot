@@ -40,9 +40,9 @@ Options:
 ## Framework
 ### Flow
 ## TODO
+- command authentication
 - conversation
 - api server
-  - command authentication
   - api authentication
 - render card
 - crypto all sensitive information

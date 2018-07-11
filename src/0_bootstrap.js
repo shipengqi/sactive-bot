@@ -4,10 +4,11 @@ const extend = require('extend');
 module.exports = robot => {
   robot.$ = {};
   robot.$.APICallbacks = new Map();
-  robot.$.reservedApps = new Map([
+  robot.$.reservedWords = new Map([
     ['help', 1],
     ['admin', 1],
-    ['sbot', 1]
+    ['sbot', 1],
+    ['skip', 1]
   ]);
   robot.$.registrar = {apps: new Map()};
 
@@ -59,6 +60,13 @@ module.exports = robot => {
     if (info.verb.includes(' ') || (info.entity && info.entity.includes(' '))) {
       throw new Error(`Cannot register listener for ${info.product}, verb/entity must be a single word.`);
     }
+    if (robot.$.reservedWords.has(info.verb) || (info.entity && robot.$.reservedWords.has(info.entity))) {
+      let errMsg = `verb or entity cannot have reserved word: ${info.verb}.\nReserved words:`;
+      for (let reservedWord of robot.$.reservedWords.keys()) {
+        errMsg += `\n  ${reservedWord}`;
+      }
+      throw new Error(errMsg);
+    }
     info.product = integrationName;
     info.regex = buildExtraRegex(info, integrationName);
     let regexString = `${info.product} ${info.verb}`;
@@ -92,8 +100,12 @@ module.exports = robot => {
 
   robot.$.registerIntegration = function(metadata, authentication) {
     let integrationName = metadata.name.toLowerCase();
-    if (robot.$.reservedApps.has(integrationName)) {
-      throw new Error(`Integration name cannot have reserved name: ${integrationName}.`);
+    if (robot.$.reservedWords.has(integrationName)) {
+      let errMsg = `Integration name cannot have reserved name: ${integrationName}.\nReserved words:`;
+      for (let reservedWord of robot.$.reservedWords.keys()) {
+        errMsg += `\n  ${reservedWord}`;
+      }
+      throw new Error(errMsg);
     }
     if (robot.$.registrar.apps.has(integrationName)) {
       throw new Error(`Integration ${integrationName} already registred!`);
