@@ -38,8 +38,16 @@ Options:
     specify the bot platform
 ```
 ## Framework
-### Flow
-Receive messages -> decode -> filter -> misspelling -> help -> nlp -> visual command -> common conversation -> monitor
+### Pipeline
+- receive messages
+- decode
+- filter
+- misspelling
+- help
+- nlp
+- visual command
+- common conversation
+- monitor
 ## TODO
 - command authentication
 - conversation

@@ -96,7 +96,7 @@ function loadBot() {
   try {
     robot.run();
   } catch (e) {
-    robot.logger.error(`Start failed, reason: ${e.message}`);
+    robot.logger.error(`Running with error: ${e.message}`);
     robot.logger.debug(e);
   }
 }
