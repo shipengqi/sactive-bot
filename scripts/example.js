@@ -5,8 +5,8 @@ module.exports = robot => {
   });
 
   robot.$.respond({
-    verb: 'get',
-    entity: 'sbot',
+    verb: 'say',
+    entity: 'hello',
     integrationName: 'test'
   }, msg => {
     msg.reply('Testing, please ignore this message ...');

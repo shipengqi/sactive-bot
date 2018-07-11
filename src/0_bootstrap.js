@@ -61,9 +61,9 @@ module.exports = robot => {
       throw new Error(`Cannot register listener for ${info.product}, verb/entity must be a single word.`);
     }
     if (robot.$.reservedWords.has(info.verb) || (info.entity && robot.$.reservedWords.has(info.entity))) {
-      let errMsg = `verb or entity cannot have reserved word: ${info.verb}.\nReserved words:`;
+      let errMsg = `verb or entity cannot have reserved word.\nReserved words:`;
       for (let reservedWord of robot.$.reservedWords.keys()) {
-        errMsg += `\n  ${reservedWord}`;
+        errMsg += `  "${reservedWord}"`;
       }
       throw new Error(errMsg);
     }
@@ -101,9 +101,9 @@ module.exports = robot => {
   robot.$.registerIntegration = function(metadata, authentication) {
     let integrationName = metadata.name.toLowerCase();
     if (robot.$.reservedWords.has(integrationName)) {
-      let errMsg = `Integration name cannot have reserved name: ${integrationName}.\nReserved words:`;
+      let errMsg = `Integration name cannot have reserved words.\nReserved words:`;
       for (let reservedWord of robot.$.reservedWords.keys()) {
-        errMsg += `\n  ${reservedWord}`;
+        errMsg += `  "${reservedWord}"`;
       }
       throw new Error(errMsg);
     }
