@@ -40,7 +40,6 @@ Options:
 ## Framework
 ### Pipeline
 - receive messages
-- decode
 - filter
 - misspelling
 - help

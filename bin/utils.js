@@ -91,19 +91,20 @@ async function create(cmd) {
 
     // schema prompt
     let envVars = await configConsole(schema);
-    let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM});
     let optionEnvs = {
       PLATFORM_OPTION: platform.PLATFORM,
       ADAPTER_NAME: adapterName,
       ADAPTER_PATH: adapterPath,
       ADAPTER_ENV_FILE: adapterEnvFile
     };
+    let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM}, optionEnvs);
     // generate all env values
     let allEnvs = generateEnvs(specifiedEnvs);
     // genarate uniqueId for bot
     allEnvs.SBOT_UNIQUE_ID = uniqid();
     // generate or update env file
     envHelper.set(adapterEnvFile, allEnvs);
+    // option.env just for 'sbot run'
     envHelper.set(OPTION_ENV_PATH, optionEnvs);
 
     // mkdir -p all required folders
@@ -129,20 +130,36 @@ function run(cmd) {
       process.exit(1);
     }
     platform = Number(envHelper.get(OPTION_ENV_PATH).PLATFORM_OPTION);
-  } else {
-    if (!ADAPTER_MAP.has(cmd.platform)) {
-      console.error(`Platform ${cmd.platform} not supported.`);
-      console.error('Exiting ...');
-      process.exit(1);
+  } else { // specify platform
+    if (ADAPTER_MAP.has(cmd.platform)) { // specify supported platform
+      platform = ADAPTER_MAP.get(cmd.platform);
+    } else { // specify external platform
+      console.log(`Platform: ${cmd.platform} not supported.`);
     }
-    platform = ADAPTER_MAP.get(cmd.platform);
   }
-  let adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(platform)}`;
+
+  let adapterEnvFile = ` ${DEFAULT_ENV_PATH}/${cmd.platform}.env`;
+  if (platform) {
+    adapterEnvFile = `${DEFAULT_ENV_PATH}/${ENV_FILE_MAP.get(platform)}`;
+  }
+  console.log(`Try to search ${adapterEnvFile} file`);
   if (!fs.existsSync(adapterEnvFile)) {
     console.error(`The env file ${adapterEnvFile} was not found.\nPlease run the 'sbot create' firstly.`);
     console.error('Exiting ...');
     process.exit(1);
   }
+
+  if (cmd.platform) { // if specify platform, reset option.env
+    let specifiedEnvs = envHelper.get(adapterEnvFile);
+    let optionEnvs = {
+      PLATFORM_OPTION: specifiedEnvs.PLATFORM_OPTION,
+      ADAPTER_NAME: specifiedEnvs.ADAPTER_NAME,
+      ADAPTER_PATH: specifiedEnvs.ADAPTER_PATH,
+      ADAPTER_ENV_FILE: specifiedEnvs.ADAPTER_ENV_FILE
+    };
+    envHelper.set(OPTION_ENV_PATH, optionEnvs);
+  }
+
   if (shell.exec(START_UP_COMMAND).code !== 0) {
     shell.echo('Start bot failed.');
     shell.exit(1);
@@ -209,9 +226,10 @@ function generateEnvs(envVars) {
     modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
     modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
   }
-  // can be configured in development
+  // can be configured in development and production
   modeEnvs.SBOT_WECHAT_AUTH_PORT = envs('SBOT_WECHAT_AUTH_PORT') || defaultEnvs.SBOT_WECHAT_AUTH_PORT;
   modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
+  modeEnvs.SBOT_MINIMUM_SIMILARITY = envs('SBOT_MINIMUM_SIMILARITY') || defaultEnvs.SBOT_MINIMUM_SIMILARITY;
 
   return extend(true, {}, envVars, defaultEnvs, modeEnvs);
 }

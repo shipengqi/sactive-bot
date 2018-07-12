@@ -11,6 +11,7 @@ module.exports = robot => {
     ['skip', 1]
   ]);
   robot.$.registrar = {apps: new Map()};
+  robot.$.commands = new Map();
 
   let buildExtraRegex = function(info, integrationName) {
     // default values set for backward compatibility
@@ -73,6 +74,12 @@ module.exports = robot => {
     if (info.entity) {
       regexString += ` ${info.entity}`;
     }
+    let subs = robot.$.commands.get(integrationName).subs;
+    let subCommand = info.entity ? `${info.verb} ${info.entity}` : info.verb;
+    if (subs.has(subCommand)) {
+      throw new Error(`Command: ${subCommand} already registered!`);
+    }
+    subs.set(subCommand, info.longDesc);
     if (info.regex) {
       regexString = `${regexString}${info.regex}$`;
       robot.logger.debug(`The regexString is = ${regexString}.`);
@@ -89,6 +96,11 @@ module.exports = robot => {
     if (!info.integrationName) {
       throw new Error(`integrationName is required.`);
     }
+    // check input
+    if (!info.shortDesc) {
+      throw new Error('At least info.shortDesc must be specified.');
+    }
+    info.longDesc = info.longDesc || info.shortDesc;
     let integrationName = info.integrationName.toLowerCase();
     if (!robot.$.registrar.apps.has(integrationName)) {
       throw new Error(`Cannot register listener for ${integrationName}, integration ${integrationName} not registered, please use robot.e.registerIntegration.`);
@@ -108,7 +120,7 @@ module.exports = robot => {
       throw new Error(errMsg);
     }
     if (robot.$.registrar.apps.has(integrationName)) {
-      throw new Error(`Integration ${integrationName} already registred!`);
+      throw new Error(`Integration: ${integrationName} already registered!`);
     }
     if (!_.isString(integrationName)) {
       throw new Error(`Cannot register integration for ${integrationName}, name must be a string.`);
@@ -125,6 +137,10 @@ module.exports = robot => {
 
     robot.logger.debug(`Successfully registered ${integrationName} with:`);
     robot.logger.debug(`Meta = ${JSON.stringify(metadata)}`);
+    robot.$.commands.set(integrationName, {
+      desc: metadata.longDesc,
+      subs: new Map()
+    });
     return robot.$.registrar.apps.set(integrationName, {
       metadata,
       auth: authentication || null
