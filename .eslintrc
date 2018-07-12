@@ -1,3 +1,6 @@
 {
-  "extends": "sactive"
+  "extends": "sactive",
+  "rules": {
+    "new-cap": ["error", { "properties": false }]
+  }
 }
