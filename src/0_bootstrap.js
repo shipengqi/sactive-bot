@@ -76,10 +76,10 @@ module.exports = robot => {
     }
     let subs = robot.$.commands.get(integrationName).subs;
     let subCommand = info.entity ? `${info.verb} ${info.entity}` : info.verb;
-    if (subs.has(subCommand)) {
+    if (subs.has(subCommand.toLowerCase())) { // commands are case-insensitive
       throw new Error(`Command: ${subCommand} already registered!`);
     }
-    subs.set(subCommand, info.longDesc);
+    subs.set(subCommand.toLowerCase(), info.longDesc);
     if (info.regex) {
       regexString = `${regexString}${info.regex}$`;
       robot.logger.debug(`The regexString is = ${regexString}.`);
@@ -111,7 +111,7 @@ module.exports = robot => {
   };
 
   robot.$.registerIntegration = function(metadata, authentication) {
-    let integrationName = metadata.name.toLowerCase();
+    let integrationName = metadata.name.toLowerCase(); // integrationName is case-insensitive
     if (robot.$.reservedWords.has(integrationName)) {
       let errMsg = `Integration name cannot have reserved words.\nReserved words:`;
       for (let reservedWord of robot.$.reservedWords.keys()) {
