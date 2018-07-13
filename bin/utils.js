@@ -230,6 +230,7 @@ function generateEnvs(envVars) {
   modeEnvs.SBOT_WECHAT_AUTH_PORT = envs('SBOT_WECHAT_AUTH_PORT') || defaultEnvs.SBOT_WECHAT_AUTH_PORT;
   modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
   modeEnvs.SBOT_MINIMUM_SIMILARITY = envs('SBOT_MINIMUM_SIMILARITY') || defaultEnvs.SBOT_MINIMUM_SIMILARITY;
+  modeEnvs.REMINDER_COMMAND_LIST_MAXIMUM = envs('REMINDER_COMMAND_LIST_MAXIMUM') || defaultEnvs.REMINDER_COMMAND_LIST_MAXIMUM;
 
   return extend(true, {}, envVars, defaultEnvs, modeEnvs);
 }

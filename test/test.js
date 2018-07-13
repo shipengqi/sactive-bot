@@ -1,1 +1,7 @@
-console.log(0.9416666666666667 > 0.85)
+const _ = require('lodash');
+let a = ['sdfs', '322', 'sdfsdf'];
+let c = _.clone(a);
+console.log(c);
+c.push('c');
+console.log(c);
+console.log(a);
