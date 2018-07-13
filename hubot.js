@@ -43,6 +43,8 @@ let externalModules = envs('SBOT_HUBOT_MODULES') || '';
 
 function loadBot() {
   let robot = injector.getInstance('$$sbot');
+  // bind nlp module
+  robot.nlp = injector.getInstance('$$nlp');
   // Warning in development
   if (envs('NODE_ENV') !== 'production') {
     robot.logger.warn('Running bot in development mode. To run in production set NODE_ENV=production.');
