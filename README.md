@@ -62,9 +62,12 @@ Options:
   - training page
 - gritty
 - wechat
+  - http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html
   - api
     - https://github.com/Urinx/WeixinBot
-  - QRCode terminal
+  - login
+    - http://www.tanhao.me/talk/1466.html/
+    - QRCode terminal
 - mattermost
   - api
     - https://www.npmjs.com/package/hubot-matteruser
