@@ -84,8 +84,6 @@ More details, refer [prompt](https://www.npmjs.com/package/prompt).
 - docker version
 - kubernetes yaml file
 - scripts hot reload
-- nlp
-  - training page
 - gritty
 - wechat
   - http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html
