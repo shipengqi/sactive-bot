@@ -231,6 +231,7 @@ function generateEnvs(envVars) {
   modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
   modeEnvs.SBOT_MINIMUM_SIMILARITY = envs('SBOT_MINIMUM_SIMILARITY') || defaultEnvs.SBOT_MINIMUM_SIMILARITY;
   modeEnvs.REMINDER_COMMAND_LIST_MAXIMUM = envs('REMINDER_COMMAND_LIST_MAXIMUM') || defaultEnvs.REMINDER_COMMAND_LIST_MAXIMUM;
+  modeEnvs.SBOT_MISSPELLING_ENABLED = envs('SBOT_MISSPELLING_ENABLED') || defaultEnvs.SBOT_MISSPELLING_ENABLED;
 
   return extend(true, {}, envVars, defaultEnvs, modeEnvs);
 }
