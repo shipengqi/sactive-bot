@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const extend = require('extend');
+const {CONVERSATION_INSTANCE_NAME} = require('../lib/constants');
+const {createDialog} = require('../lib/conversation');
 
 module.exports = robot => {
   robot.$ = {};
@@ -12,6 +14,7 @@ module.exports = robot => {
   ]);
   robot.$.registrar = {apps: new Map()};
   robot.$.commands = new Map();
+  robot.$.conversation = createDialog(robot, 'user', CONVERSATION_INSTANCE_NAME.CONVERSATION);
 
   let buildExtraRegex = function(info, integrationName) {
     // default values set for backward compatibility
