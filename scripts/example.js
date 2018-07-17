@@ -1,6 +1,6 @@
 module.exports = robot => {
   robot.$.registerIntegration({
-    shortDesc: 'Test module for sbot',
+    shortDesc: `Example module for \`${robot.name}\``,
     name: 'example'
   });
 

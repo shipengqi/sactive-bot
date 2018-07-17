@@ -8,7 +8,6 @@ module.exports = robot => {
   robot.$.APICallbacks = new Map();
   robot.$.reservedWords = new Map([
     ['help', 1],
-    ['admin', 1],
     ['sbot', 1],
     ['skip', 1]
   ]);
