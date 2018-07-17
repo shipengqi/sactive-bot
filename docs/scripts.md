@@ -1,1 +1,2 @@
-# How to register command
+# Writing your first script
+

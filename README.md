@@ -6,7 +6,11 @@ An extensible chat bot framework.
 npm install sactive-bot
 ```
 
-## Get started
+
+## Requirements
+- `NodeJs` version `v7.9+`
+
+## Getting started
 
 ### create a bot
 ```bash
@@ -37,6 +41,7 @@ Options:
   --platform, -p
     specify the bot platform
 ```
+
 ## Framework
 ### Pipeline
 - receive messages
