@@ -45,7 +45,7 @@ Options:
 - help
 - nlp (todo)
 - visual command
-- common conversation (todo)
+- common conversation
 - monitor (todo)
 
 ### External Adapter
