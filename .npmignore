@@ -4,5 +4,10 @@
 /log/
 /packages/
 /train/
+.idea
 *.env
 *.log
+docs.sh
+.eslintrc
+.eslintignore
+.travis.yml
