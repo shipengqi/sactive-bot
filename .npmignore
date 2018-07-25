@@ -8,8 +8,5 @@
 *.env
 *.log
 docs.sh
-.eslintrc
-.eslintignore
-.travis.yml
 package-lock.json
 *.lock
