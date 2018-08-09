@@ -1,6 +1,8 @@
 # sactive-bot
 An extensible chat bot framework.
+
 [![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
+
 ## Installation
 ```bash
 npm install sactive-bot
