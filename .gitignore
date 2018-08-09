@@ -64,3 +64,4 @@ typings/
 .next
 .idea
 *.lock
+*lock.json
