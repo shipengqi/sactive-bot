@@ -12,14 +12,17 @@ git clone git@github.com:shipengqi/sactive-bot.git
 # install dependencies
 cd sactive-bot
 yarn install
+
+# link
+npm link
 ```
 
 ### NPM ot Yarn
 ```bash
-npm install sactive-bot
+npm install sactive-bot -g
 
 # or
-yarn add sactive-bot
+yarn global add sactive-bot
 ```
 
 ## Requirements

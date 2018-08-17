@@ -60,6 +60,6 @@ module.exports = robot => {
   });
 
   robot.$.registerAPICallback('example', 'exampleforapicall', info => {
-    return Promise.reject(info.body);
+    return Promise.resolve(info.body);
   });
 };

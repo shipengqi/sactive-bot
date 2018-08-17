@@ -80,4 +80,4 @@ After running the bot, you can call this callback via the following API:
     - Content-Type: application/json
     - Body: {}
 
-![API Call](img/api_call.png)
+<img src="img/api_call.gif" width="80%" height="">
