@@ -28,8 +28,10 @@ npm install sactive-bot
 - [Microsoft Teams bot Bot](docs/msteams_bot.md)
 - [Writing your scripts](docs/scripts.md)
 - [Conversation Guide](docs/conversation_guide.md)
+- [External Adatper](docs/external_adapter.md)
 
 ## TODO
+- unit test
 - command authentication
 - api server
   - api authentication
