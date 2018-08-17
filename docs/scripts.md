@@ -52,32 +52,3 @@ robot.$.respond({
   msg.reply(`Hello, this is \`${robot.name}\`. To see a list of supported commands type: \`${robot.name} help\`.`);
 });
 ```
-
-### `robot.$.registerAPICallback(integrationName, callbackId, callback)`
-Register API Callback.
-
-**Parameters:**
-- integrationName, `String` the name of the product integration.
-- callbackId, `String` the unique id of the callback being registered.
-- callback(info), `Function` the callback function that would be executed upon execution from the `REST API`. **It must return a Promise.**
-  - info
-    - body, `Request body`
-    - adapter, `Hubot.adapter`
-**Example:**
-```javascript
-robot.$.registerAPICallback('example', 'exampleforapicall', info => {
-  return Promise.resolve({message: `Hello ${info.name}`});
-});
-```
-
-After running the bot, you can call this callback via the following API:
-
-- URL: /api/script/integrationName/callbackId
-- Protocol: HTTPS/HTTP
-- Method: POST
-- Request
-  - Headers:
-    - Content-Type: application/json
-    - Body: {}
-
-<img src="img/api_call.gif" width="80%" height="">
