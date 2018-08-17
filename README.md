@@ -19,6 +19,7 @@ npm install sactive-bot
 - Support create conversation for bot
 - Misspelling
 - Help for bot
+- Support integrate your own adatper
 
 ## Documentations
 - [Getting Started](docs/getting_started.md)

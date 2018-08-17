@@ -6,8 +6,10 @@ Then run the command `sbot create`.
 
 ## Adapter Example
 Structure of the external adapter directory `example_adapter`:
-- config.yml
-- my_adapter.js
+- `config.yml`, (required) the command `sbot create` will load this file.
+- `index.js`, (required) root file of you adapter.
+- `package.json`, (required)
+- `node_modules`, (required) all dependencies.
 
 ### [How to write your own adapter](https://hubot.github.com/docs/adapters/development/)
 
