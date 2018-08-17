@@ -25,10 +25,12 @@ npm install sactive-bot
 
 ## Demo
 Create a Mattermost bot:
-![Create bot demo](docs/img/sbot_demo.gif)
+
+<img src="docs/img/sbot_demo.gif" width="80%" height="">
 
 Chat with bot:
-![Chat with bot demo](docs/img/chat_bot_demo.gif)
+
+<img src="docs/img/chat_bot_demo.gif" width="80%" height="">
 
 ## Documentations
 - [Getting Started](docs/getting_started.md)
