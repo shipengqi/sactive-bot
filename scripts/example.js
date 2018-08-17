@@ -58,4 +58,8 @@ module.exports = robot => {
     conversation.addChoice(/yes/i, function1);
     conversation.addChoice(/no/i, function5);
   });
+
+  robot.$.registerAPICallback('example', 'exampleforapicall', info => {
+    return Promise.reject(info.body);
+  });
 };
