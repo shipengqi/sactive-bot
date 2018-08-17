@@ -8,8 +8,9 @@ An extensible chat bot framework.
 ```bash
 # clone
 git clone git@github.com:shipengqi/sactive-bot.git
-cd sactive-bot
+
 # install dependencies
+cd sactive-bot
 yarn install
 ```
 
