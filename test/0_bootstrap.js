@@ -1,10 +1,10 @@
 const _ = require('lodash');
-const {commandReceiver} = require('../lib/command_receiver/command_receiver');
+const {commandReceiver} = require('../lib/command_receiver.md/command_receiver.md');
 const {createDialog} = require('../lib/conversation/index');
 const {ADAPTER_MAPPINGS, HELP_WORDS, ORIGINAL_RESPONSE_MSG, HUBOT_I18N_REGISTER_NAME} = require('../lib/const');
 const logger = require('winston');
 const {getIdFromRoom} = require('../lib/utils/functionUtils');
-const {loadRoutes} = require('../lib/command_receiver/routes/index');
+const {loadRoutes} = require('../lib/command_receiver.md/routes/index');
 
 // contatination of help
 const reservedApps = HELP_WORDS.concat([HUBOT_I18N_REGISTER_NAME]);

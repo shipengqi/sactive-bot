@@ -56,6 +56,7 @@ yarn global add sactive-bot
 - [Mattermost Bot](docs/mattermost_bot.md)
 - [Microsoft Teams bot Bot](docs/msteams_bot.md)
 - [Writing your scripts](docs/scripts.md)
+- [Command receiver](docs/command_receiver.md)
 - [Conversation Guide](docs/conversation_guide.md)
 - [External Adatper](docs/external_adapter.md)
 
