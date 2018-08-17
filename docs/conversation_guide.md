@@ -1,12 +1,20 @@
 # Conversation Guide
+
+## Demo
+**Conversation:**
+
+<img src="img/conversation_demo.gif" width="80%" height="">
+
+**Conversation Manager**
+
+<img src="img/conversation_manager_demo.gif" width="80%" height="">
+
 ## `robot.$.conversation`
 `robot.$.conversation` is a instance of [sbot-conversation](https://github.com/shipengqi/sbot-conversation).
+
 Refer to the doc [How to create a conversation for bot](https://github.com/shipengqi/sbot-conversation).
 
-<img src="docs/img/conversation_demo.gif" width="80%" height="">
-
 ## Conversation manager command
-
 ### show
 Get conversations of bot.
 ```bash
@@ -42,7 +50,7 @@ cancel conversation
 ```
 
 ### resume
-Resume a stopped conversation of bot.
+Resume a pending conversation of bot.
 ```bash
 resume conversation [conversationId]
 ```
