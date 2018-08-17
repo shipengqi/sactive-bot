@@ -23,6 +23,13 @@ npm install sactive-bot
 - Command API call
 - Support integrate your own adatper
 
+## Demo
+Create a Mattermost bot:
+![Create bot demo](docs/img/sbot_demo.gif)
+
+Chat with bot:
+![Chat with bot demo](docs/img/chat_bot_demo.gif)
+
 ## Documentations
 - [Getting Started](docs/getting_started.md)
 - [WeChat Bot](docs/wechat_bot.md)
