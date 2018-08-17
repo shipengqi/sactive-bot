@@ -4,8 +4,21 @@ An extensible chat bot framework.
 [![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
 
 ## Installation
+### Clone source code form GitHub
+```bash
+# clone
+git clone git@github.com:shipengqi/sactive-bot.git
+cd sactive-bot
+# install dependencies
+yarn install
+```
+
+### NPM ot Yarn
 ```bash
 npm install sactive-bot
+
+# or
+yarn add sactive-bot
 ```
 
 ## Requirements
@@ -24,11 +37,11 @@ npm install sactive-bot
 - Support integrate your own adatper
 
 ## Demo
-Create a Mattermost bot:
+**Create a Mattermost bot:**
 
 <img src="docs/img/sbot_demo.gif" width="80%" height="">
 
-Chat with bot:
+**Chat with bot:**
 
 <img src="docs/img/chat_bot_demo.gif" width="80%" height="">
 
