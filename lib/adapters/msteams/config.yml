@@ -7,7 +7,7 @@ BOTBUILDER_APP_PASSWORD:
   message: 'A Microsoft APP password is required.'
   hidden: true
 HUBOT_OFFICE365_TENANT_FILTER:
-  description: 'Microsoft tenant ID:'
+  description: 'Microsoft tenant ID'
   pattern: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
   message: 'Enter the Microsoft tenant ID with a correct format.'
   hidden: true
