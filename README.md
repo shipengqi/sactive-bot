@@ -1,7 +1,21 @@
 # sactive-bot
 An extensible chat bot framework.
 
+[![Build status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![License][license-image]][license-url]
+
+[npm-image]: https://img.shields.io/npm/v/sactive-web.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/sactive-web
+[travis-image]: https://travis-ci.org/shipengqi/sactive-web.svg?branch=master&style=flat-square
+[travis-url]: https://www.travis-ci.org/shipengqi/sactive-web
+[license-image]: http://img.shields.io/npm/l/sactive-web.svg?style=flat-square
+[license-url]: ./LICENSE
+
 [![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
+
+## Requirements
+- `NodeJs` version `v7.9+`
 
 ## Installation
 ### Clone source code form GitHub
@@ -25,14 +39,11 @@ npm install sactive-bot -g
 yarn global add sactive-bot
 ```
 
-## Requirements
-- `NodeJs` version `v7.9+`
-
 ## Features
 - WeChat Bot
 - Slack Bot
 - Mattermost Bot
-- Microsoft Teams bot Bot
+- Microsoft Teams Bot
 - Support create conversation for bot
 - Misspelling
 - Help for bot
@@ -51,10 +62,10 @@ yarn global add sactive-bot
 
 ## Documentations
 - [Getting Started](docs/getting_started.md)
-- [WeChat Bot](docs/wechat_bot.md)
-- [Slack Bot](docs/slack_bot.md)
-- [Mattermost Bot](docs/mattermost_bot.md)
-- [Microsoft Teams bot Bot](docs/msteams_bot.md)
+- [Create a WeChat Bot](docs/wechat_bot.md)
+- [Create a Slack Bot](docs/slack_bot.md)
+- [Create a Mattermost Bot](docs/mattermost_bot.md)
+- [Create a Microsoft Teams bot Bot](docs/msteams_bot.md)
 - [Writing your scripts](docs/scripts.md)
 - [Command receiver](docs/command_receiver.md)
 - [Conversation Guide](docs/conversation_guide.md)
@@ -63,26 +74,19 @@ yarn global add sactive-bot
 ## TODO
 - unit test
 - command authentication
-- api server
-  - api authentication
-- render card
+- bot server authentication
 - crypto all sensitive information
+- render card
 - docker version, kubernetes yaml file
-- scripts hot reload
 - wechat
   - http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html
-  - api
-    - https://github.com/Urinx/WeixinBot
-  - login
-    - http://www.tanhao.me/talk/1466.html/
-    - QRCode terminal
+  - https://github.com/Urinx/WeixinBot
+  - http://www.tanhao.me/talk/1466.html/
+  - QRCode terminal
 - mattermost
-  - api
-    - https://www.npmjs.com/package/hubot-matteruser
-    - https://api.mattermost.com/
+  - https://www.npmjs.com/package/hubot-matteruser
+  - https://api.mattermost.com/
 - slack
-  - api
-    - https://github.com/slackapi/hubot-slack
+  - https://github.com/slackapi/hubot-slack
 - msteams
-  - api
-    - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
+  - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
