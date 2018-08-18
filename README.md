@@ -5,13 +5,6 @@ An extensible chat bot framework.
 [![NPM version][npm-image]][npm-url]
 [![License][license-image]][license-url]
 
-[npm-image]: https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/sactive-bot
-[travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg&style=flat-square
-[travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
-[license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
-[license-url]: ./LICENSE
-
 [![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
 
 ## Requirements
@@ -90,3 +83,11 @@ yarn global add sactive-bot
   - https://github.com/slackapi/hubot-slack
 - msteams
   - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
+
+
+[npm-image]: https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/sactive-bot
+[travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square
+[travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
+[license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
+[license-url]: ./LICENSE
