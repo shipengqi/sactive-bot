@@ -62,7 +62,8 @@ The following environment variables can be configured both `development` and `pr
 | `REMINDER_COMMAND_LIST_MAXIMUM`        |   If misspelling is enabled, bot will return a similar command list when bot receives the error command. |
 
 
-Just can be configured in `production`:
+Environment variables for `logger`, Just can be configured in `production`.
+
 `bot.logger` based on [winston](https://github.com/winstonjs/winston).
 logger default format: `{timestamp} {label} {level}: {message}`, `e.g.  2018-08-17 20:59:25 [bot-dce4c0jkxzv0pe] info: Running hubot version 2.19.0`
 
