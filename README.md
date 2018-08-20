@@ -3,6 +3,7 @@ An extensible chat bot framework.
 
 [![Build status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
+[![NPM Download][npm-download]][npm-url]
 [![License][license-image]][license-url]
 
 [![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
@@ -89,5 +90,6 @@ yarn global add sactive-bot
 [npm-url]: https://www.npmjs.com/package/sactive-bot
 [travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square
 [travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
+[npm-download]: https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square
 [license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
 [license-url]: ./LICENSE
