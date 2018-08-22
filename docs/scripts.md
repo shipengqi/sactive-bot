@@ -4,7 +4,7 @@
   - `coffeescript` or `es6`
 
 ## Script Example
-[example.js](https://github.com/shipengqi/sactive-bot/blob/master/scripts/example.js)
+[example.js](https://github.com/shipengqi/sactive-bot/blob/master/examples/example.js)
 All script files under `/sactive-bot/scripts/` and `/sactive-bot/src/` will load automatically by bot.
 
 ## API

@@ -10,7 +10,10 @@
 
 ## Creating a WeChat bot
 
-1. `sbot create`
-2. Access `http://<hostname>:8082/login`
+1. `sbot create -s`
+2. Access `(http|https)://<hostname>:<SBOT_WECHAT_AUTH_PORT>/login`, The protocol should be `https`, if you enabled TLS for server.
 3. Scan the QR code
 
+### Demo
+
+<img src="img/wechat_demo.gif" width="80%" height="">
