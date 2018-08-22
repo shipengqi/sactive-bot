@@ -21,6 +21,8 @@ const {ymlHelper, envHelper, eval2, mkdirp, envs} = require('../lib/utils');
 const platformConfig = path.join(__dirname, 'platform.yml');
 const commonConfig = path.join(__dirname, 'common.yml');
 const externalConfig = path.join(__dirname, 'external.yml');
+const serverConfig = path.join(__dirname, 'server.yml');
+const certConfig = path.join(__dirname, 'cert.yml');
 const START_UP_COMMAND = `${path.join(__dirname, '..')}/node_modules/.bin/coffee ${path.join(__dirname, '../run.coffee')}`;
 
 async function create(cmd) {
@@ -35,7 +37,10 @@ async function create(cmd) {
     let platformSchema = configToSchema(platformConfig);
     let commonSchema = configToSchema(commonConfig);
     let externalSchema = configToSchema(externalConfig);
-
+    // load server schema
+    let serverSchema = configToSchema(serverConfig);
+    // load server schema
+    let certSchema = configToSchema(certConfig);
     // get platform
     let platform = await configConsole(platformSchema);
     platform.PLATFORM = Number(platform.PLATFORM);
@@ -77,7 +82,7 @@ async function create(cmd) {
     }
 
     // merge all schemas
-    let schema = extend(true, {}, customSchema, commonSchema, adapterSchema);
+    let schema = extend(true, {}, customSchema, commonSchema, adapterSchema, serverSchema);
     let adapterEnvFile = `${DEFAULT_ENV_PATH}/${adapterEnvName}`;
     // get the env values if the adapter has been configured before, and set the default value into schema
     if (fs.existsSync(adapterEnvFile)) {
@@ -91,13 +96,31 @@ async function create(cmd) {
 
     // schema prompt
     let envVars = await configConsole(schema);
+    // cert schema prompt
+    let certVars = null;
+    // get the env values if the cert file has been configured before, and set the default value into cert schema
+    if (fs.existsSync(adapterEnvFile)) {
+      let preEnvs = envHelper.get(adapterEnvFile);
+      _.each(certSchema.properties, (env, key) => {
+        if (preEnvs[key] && (key === 'SBOT_CERT_FILE_PATH' || key === 'SBOT_KEY_FILE_PATH')) {
+          env.default = preEnvs[key];
+        }
+      });
+    }
+    if (envVars.SBOT_ENABLE_TLS.startsWith('y')) {
+      certVars = await configConsole(certSchema);
+      if (!fs.existsSync(certVars.SBOT_CERT_FILE_PATH) || !fs.existsSync(certVars.SBOT_KEY_FILE_PATH)) {
+        console.error(`Cert file path: '${certVars.SBOT_CERT_FILE_PATH}' or key file path: '${certVars.SBOT_CERT_FILE_PATH}' does not exists.`);
+        process.exit(1);
+      }
+    }
     let optionEnvs = {
       PLATFORM_OPTION: platform.PLATFORM,
       ADAPTER_NAME: adapterName,
       ADAPTER_PATH: adapterPath,
       ADAPTER_ENV_FILE: adapterEnvFile
     };
-    let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM}, optionEnvs);
+    let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM}, optionEnvs, certVars);
     // generate all env values
     let allEnvs = generateEnvs(specifiedEnvs);
     // genarate uniqueId for bot
@@ -227,7 +250,6 @@ function generateEnvs(envVars) {
     modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
   }
   // can be configured in development and production
-  modeEnvs.SBOT_WECHAT_AUTH_PORT = envs('SBOT_WECHAT_AUTH_PORT') || defaultEnvs.SBOT_WECHAT_AUTH_PORT;
   modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
   modeEnvs.SBOT_MINIMUM_SIMILARITY = envs('SBOT_MINIMUM_SIMILARITY') || defaultEnvs.SBOT_MINIMUM_SIMILARITY;
   modeEnvs.REMINDER_COMMAND_LIST_MAXIMUM = envs('REMINDER_COMMAND_LIST_MAXIMUM') || defaultEnvs.REMINDER_COMMAND_LIST_MAXIMUM;

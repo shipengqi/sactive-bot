@@ -41,7 +41,7 @@ Options:
 | `SBOT_SCRIPTS`        |    Enter the script path (optional)   |   All script files under the path specified by `SBOT_SCRIPTS` variable will be loaded by bot. |
 | `SBOT_NAME`        |   Enter a bot name    |   required    |
 | `SBOT_SERVER_PORT`        |    Bot server port   |   Bot http server started with the `Sbot` startup, And listens on the specified port.  |
-| `SBOT_ENABLE_TLS`        |  Enable the TLS for bot server    |   default `no`   |
+| `SBOT_ENABLE_TLS`        |  Enable the TLS for server    |   default `no`   |
 | `SBOT_CERT_FILE_PATH`        |    Enter the cert file path if enable the TLS   |  The cert file is used to create HTTPS server.  |
 | `SBOT_KEY_FILE_PATH`        |   Enter the key file path if enable the TLS    |   The key file is used to create HTTPS server.   |
 
@@ -56,7 +56,6 @@ The following environment variables can be configured both `development` and `pr
 
 | Environment variables     |  Description  |
 | :--------   | :-----   |
-| `SBOT_WECHAT_AUTH_PORT`        |   Specify WeChat auth server port, auth server started with the `Wechat Bot` startup, default `8082`  |
 | `SBOT_MISSPELLING_ENABLED`        |    Enable misspelling, based on [natural.JaroWinklerDistance](https://github.com/NaturalNode/natural#string-distance). |
 | `SBOT_MINIMUM_SIMILARITY`        |   Minimum similarity for misspelling, default `0.85`. |
 | `REMINDER_COMMAND_LIST_MAXIMUM`        |   If misspelling is enabled, bot will return a similar command list when bot receives the error command. |

@@ -1,0 +1,4 @@
+SBOT_CERT_FILE_PATH:
+  description: 'Enter the cert file path if enable the TLS'
+SBOT_KEY_FILE_PATH:
+  description: 'Enter the key file path if enable the TLS'

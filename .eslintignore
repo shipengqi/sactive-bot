@@ -1,3 +1,9 @@
 /docs/
 /node_modules/
 /test/
+/log/
+/train/
+/packages/
+.idea
+*.lock
+*lock.json
