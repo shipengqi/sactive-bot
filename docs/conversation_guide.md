@@ -1,13 +1,19 @@
 # Conversation Guide
 
-## Demo
-**Conversation:**
+<p align="center">
+ Conversation:
+</p>
+<div align="center">
+  <img alt="Conversation" src="img/conversation_demo.gif" width="65%">
+</div>
 
-<img src="img/conversation_demo.gif" width="80%" height="">
+<p align="center">
+ Conversation Manager:
+</p>
+<div align="center">
+  <img alt="Conversation Manager" src="img/conversation_manager_demo.gif" width="65%">
+</div>
 
-**Conversation Manager**
-
-<img src="img/conversation_manager_demo.gif" width="80%" height="">
 
 ## `robot.$.conversation`
 `robot.$.conversation` is a instance of [sbot-conversation](https://github.com/shipengqi/sbot-conversation).
