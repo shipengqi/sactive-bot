@@ -37,15 +37,15 @@ robot.$.registerAPICallback('example', 'exampleforapicall', info => {
 In the url `/api/script/integrationName/callbackId`, `/api` is the default baseUrl, specified by the `SBOT_SERVER_BASEURL` environment variable.
 `/script/integrationName/callbackId` is route url.
 
-<p align="center">
- Postman test:
-</p>
+
+**Postman test:**
+
 <div align="center">
-  <img alt="Postman test" src="Postman test" width="65%">
+  <img alt="Postman test" src="img/api_call.gif" width="65%">
 </div>
 
 
-**Curl test**
+**Curl test:**
 ```bash
  curl -X POST -H "Content-Type:application/json" -d '{"test": "hello"}' http://127.0.0.1:8081/api/script/{integrationName}/{callbackId}
 ```
