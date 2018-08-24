@@ -1,40 +1,21 @@
-<h1 align="center">
-  SActive Bot
-</h1>
+# sactive-bot
+An extensible chat bot framework.
 
-<h4 align="center">
-  :smiling_imp: An extensible chat bot framework.
-</h4>
+[![Build status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![NPM Download][npm-download]][npm-url]
+[![License][license-image]][license-url]
 
-<p align="center">
-  <a href="https://www.travis-ci.org/shipengqi/sactive-bot">
-    <img alt="Build Status" src="https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square">
-  </a>
-  <a href="https://www.npmjs.com/package/sactive-bot">
-    <img alt="NPM version" src="https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square">
-  </a>
-  <a href="https://www.npmjs.com/package/sactive-bot">
-    <img alt="NPM Download" src="https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square">
-  </a>
-  <a href="https://github.com/shipengqi/sactive-bot/blob/master/LICENSE">
-    <img alt="License" src="http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square">
-  </a>
-</p>
+[![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
 
-<p align="center">
- Create a Mattermost bot:
-</p>
-<div align="center">
-  <img alt="Create a Mattermost bot" src="docs/img/sbot_demo.gif" width="65%">
-</div>
+## Demo
+**Create a Mattermost bot:**
 
-<p align="center">
- Chat with bot:
-</p>
-<div align="center">
-  <img alt="Chat with bot" src="docs/img/chat_bot_demo.gif" width="65%">
-</div>
+<img src="docs/img/sbot_demo.gif" width="80%" height="">
 
+**Chat with bot:**
+
+<img src="docs/img/chat_bot_demo.gif" width="80%" height="">
 
 ## Requirements
 - `NodeJs` version `v7.9+`
@@ -103,3 +84,11 @@ yarn global add sactive-bot
   - [hubot-slack](https://github.com/slackapi/hubot-slack)
 - Microsoft teams Adapter
   - [TeamsAPI](https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js)
+
+[npm-image]: https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/sactive-bot
+[travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square
+[travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
+[npm-download]: https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square
+[license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
+[license-url]: ./LICENSE
