@@ -16,5 +16,5 @@
 
 
 <div align="center">
-  <img alt="Create a WeChat bot" src="img/wechat_demo.gif" width="80%">
+  <img alt="Create a WeChat bot" src="img/wechat_demo.gif" width="90%">
 </div>

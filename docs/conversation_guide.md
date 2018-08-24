@@ -4,14 +4,14 @@
  Conversation:
 </p>
 <div align="center">
-  <img alt="Conversation" src="img/conversation_demo.gif" width="80%">
+  <img alt="Conversation" src="img/conversation_demo.gif" width="90%">
 </div>
 
 <p align="center">
  Conversation Manager:
 </p>
 <div align="center">
-  <img alt="Conversation Manager" src="img/conversation_manager_demo.gif" width="80%">
+  <img alt="Conversation Manager" src="img/conversation_manager_demo.gif" width="90%">
 </div>
 
 
