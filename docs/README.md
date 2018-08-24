@@ -25,14 +25,14 @@
  Create a Mattermost bot:
 </p>
 <div align="center">
-  <img alt="Create a Mattermost bot" src="docs/img/sbot_demo.gif" width="65%">
+  <img alt="Create a Mattermost bot" src="img/sbot_demo.gif" width="65%">
 </div>
 
 <p align="center">
  Chat with bot:
 </p>
 <div align="center">
-  <img alt="Chat with bot" src="docs/img/chat_bot_demo.gif" width="65%">
+  <img alt="Chat with bot" src="img/chat_bot_demo.gif" width="65%">
 </div>
 
 
@@ -74,15 +74,15 @@ yarn global add sactive-bot
 - Support integrate your own adatper
 
 ## Documentations
-- [Getting Started](docs/getting_started.md)
-- [Create a WeChat Bot](docs/wechat_bot.md)
-- [Create a Slack Bot](docs/slack_bot.md)
-- [Create a Mattermost Bot](docs/mattermost_bot.md)
-- [Create a Microsoft Teams bot Bot](docs/msteams_bot.md)
-- [Writing your scripts](docs/scripts.md)
-- [Command receiver](docs/command_receiver.md)
-- [Conversation Guide](docs/conversation_guide.md)
-- [External Adatper](docs/external_adapter.md)
+- [Getting Started](getting_started.md)
+- [Create a WeChat Bot](wechat_bot.md)
+- [Create a Slack Bot](slack_bot.md)
+- [Create a Mattermost Bot](mattermost_bot.md)
+- [Create a Microsoft Teams bot Bot](msteams_bot.md)
+- [Writing your scripts](scripts.md)
+- [Command receiver](command_receiver.md)
+- [Conversation Guide](conversation_guide.md)
+- [External Adatper](external_adapter.md)
 
 ## TODO
 - Unit Test
