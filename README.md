@@ -1,12 +1,40 @@
-# sactive-bot
-An extensible chat bot framework.
+<h1 align="center">
+  SActive Bot
+</h1>
 
-[![Build status][travis-image]][travis-url]
-[![NPM version][npm-image]][npm-url]
-[![NPM Download][npm-download]][npm-url]
-[![License][license-image]][license-url]
+<h4 align="center">
+  :smiling_imp: An extensible chat bot framework.
+</h4>
 
-[![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
+<p align="center">
+  <a href="https://www.travis-ci.org/shipengqi/sactive-bot">
+    <img alt="Build Status" src="https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/sactive-bot">
+    <img alt="NPM version" src="https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/sactive-bot">
+    <img alt="NPM Download" src="https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square">
+  </a>
+  <a href="https://github.com/shipengqi/sactive-bot/blob/master/LICENSE">
+    <img alt="License" src="http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square">
+  </a>
+</p>
+
+<p align="center">
+ Create a Mattermost bot:
+</p>
+<div align="center">
+  <img alt="Create a Mattermost bot" src="docs/img/sbot_demo.gif" width="65%">
+</div>
+
+<p align="center">
+ Chat with bot:
+</p>
+<div align="center">
+  <img alt="Chat with bot" src="docs/img/chat_bot_demo.gif" width="65%">
+</div>
+
 
 ## Requirements
 - `NodeJs` version `v7.9+`
@@ -45,15 +73,6 @@ yarn global add sactive-bot
 - Command API call
 - Support integrate your own adatper
 
-## Demo
-**Create a Mattermost bot:**
-
-<img src="docs/img/sbot_demo.gif" width="80%" height="">
-
-**Chat with bot:**
-
-<img src="docs/img/chat_bot_demo.gif" width="80%" height="">
-
 ## Documentations
 - [Getting Started](docs/getting_started.md)
 - [Create a WeChat Bot](docs/wechat_bot.md)
@@ -66,30 +85,21 @@ yarn global add sactive-bot
 - [External Adatper](docs/external_adapter.md)
 
 ## TODO
-- unit test
-- command authentication
-- bot server authentication
-- crypto all sensitive information
-- render card
-- docker version, kubernetes yaml file
-- wechat
-  - http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html
-  - https://github.com/Urinx/WeixinBot
-  - http://www.tanhao.me/talk/1466.html/
+- Unit Test
+- Command authentication
+- Bot server authentication
+- Crypto all sensitive information
+- Render card
+- Docker version, kubernetes yaml file
+- Wechat Adapter
+  - [WeChat Protocol](http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html)
+  - [WeixinBot](https://github.com/Urinx/WeixinBot)
+  - [WeChat communication process](http://www.tanhao.me/talk/1466.html/)
   - QRCode terminal
-- mattermost
-  - https://www.npmjs.com/package/hubot-matteruser
-  - https://api.mattermost.com/
-- slack
-  - https://github.com/slackapi/hubot-slack
-- msteams
-  - https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js
-
-
-[npm-image]: https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/sactive-bot
-[travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square
-[travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
-[npm-download]: https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square
-[license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
-[license-url]: ./LICENSE
+- Mattermost Adapter
+  - [hubot-matteruser](https://www.npmjs.com/package/hubot-matteruser)
+  - [API doc](https://api.mattermost.com/)
+- Slack Adapter
+  - [hubot-slack](https://github.com/slackapi/hubot-slack)
+- Microsoft teams Adapter
+  - [TeamsAPI](https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js)
