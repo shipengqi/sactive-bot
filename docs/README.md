@@ -1,22 +1,39 @@
-# sactive-bot
-An extensible chat bot framework.
+<h1 align="center">
+  SActive Bot
+</h1>
 
-[![Build status][travis-image]][travis-url]
-[![NPM version][npm-image]][npm-url]
-[![NPM Download][npm-download]][npm-url]
-[![License][license-image]][license-url]
+<h4 align="center">
+  :smiling_imp: An extensible chat bot framework.
+</h4>
 
-[![NPM](https://nodei.co/npm/sactive-bot.png?downloads=true)](https://nodei.co/npm/sactive-bot/)
+<p align="center">
+  <a href="https://www.travis-ci.org/shipengqi/sactive-bot">
+    <img alt="Build Status" src="https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/sactive-bot">
+    <img alt="NPM version" src="https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/sactive-bot">
+    <img alt="NPM Download" src="https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square">
+  </a>
+  <a href="https://github.com/shipengqi/sactive-bot/blob/master/LICENSE">
+    <img alt="License" src="http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square">
+  </a>
+</p>
 
-## Demo
+<p align="center">
+ Create a Mattermost bot:
+</p>
+<div align="center">
+  <img alt="Create a Mattermost bot" src="img/sbot_demo.gif" width="65%">
+</div>
 
-**Create a Mattermost bot:**
-
-<img src="docs/img/sbot_demo.gif" width="80%" height="">
-
-**Chat with bot:**
-
-<img src="docs/img/chat_bot_demo.gif" width="80%" height="">
+<p align="center">
+ Chat with bot:
+</p>
+<div align="center">
+  <img alt="Chat with bot" src="img/chat_bot_demo.gif" width="65%">
+</div>
 
 
 ## Requirements
@@ -57,8 +74,15 @@ yarn global add sactive-bot
 - Support integrate your own adatper
 
 ## Documentations
-
-- Refer to the [Documentation](https://www.shipengqi.top/sactive-bot).
+- [Getting Started](getting_started.md)
+- [Create a WeChat Bot](wechat_bot.md)
+- [Create a Slack Bot](slack_bot.md)
+- [Create a Mattermost Bot](mattermost_bot.md)
+- [Create a Microsoft Teams bot Bot](msteams_bot.md)
+- [Writing your scripts](scripts.md)
+- [Command receiver](command_receiver.md)
+- [Conversation Guide](conversation_guide.md)
+- [External Adatper](external_adapter.md)
 
 ## TODO
 - Unit Test
