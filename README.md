@@ -25,14 +25,14 @@
  Create a Mattermost bot:
 </p>
 <div align="center">
-  <img alt="Create a Mattermost bot" src="img/sbot_demo.gif" width="65%">
+  <img alt="Create a Mattermost bot" src="docs/img/sbot_demo.gif" width="65%">
 </div>
 
 <p align="center">
  Chat with bot:
 </p>
 <div align="center">
-  <img alt="Chat with bot" src="img/chat_bot_demo.gif" width="65%">
+  <img alt="Chat with bot" src="docs/img/chat_bot_demo.gif" width="65%">
 </div>
 
 
@@ -96,11 +96,3 @@ yarn global add sactive-bot
   - [hubot-slack](https://github.com/slackapi/hubot-slack)
 - Microsoft teams Adapter
   - [TeamsAPI](https://github.com/howdyai/botkit/blob/master/lib/TeamsAPI.js)
-
-[npm-image]: https://img.shields.io/npm/v/sactive-bot.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/sactive-bot
-[travis-image]: https://img.shields.io/travis/shipengqi/sactive-bot/master.svg?style=flat-square
-[travis-url]: https://www.travis-ci.org/shipengqi/sactive-bot
-[npm-download]: https://img.shields.io/npm/dw/sactive-bot.svg?style=flat-square
-[license-image]: http://img.shields.io/npm/l/sactive-bot.svg?style=flat-square
-[license-url]: ./LICENSE
