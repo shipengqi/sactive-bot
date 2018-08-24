@@ -41,7 +41,7 @@ In the url `/api/script/integrationName/callbackId`, `/api` is the default baseU
 **Postman test:**
 
 <div align="center">
-  <img alt="Postman test" src="img/api_call.gif" width="65%">
+  <img alt="Postman test" src="img/api_call.gif" width="80%">
 </div>
 
 
