@@ -10,8 +10,3 @@ SBOT_WX_IGNORE_GROUP:
   message: 'Input yes or no'
   default: 'no'
   required: false
-SBOT_WECHAT_AUTH_PORT:
-  description: 'WeChat auth server port'
-  pattern: /^([1-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/
-  message: 'WeChat auth server port (between 1 and 65535) is required.'
-  default: 8082
