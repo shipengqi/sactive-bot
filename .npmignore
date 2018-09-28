@@ -3,6 +3,9 @@
 /log/
 /packages/
 /train/
+/files/
+/cov/
+/coverage/
 .idea
 *.env
 *.log
