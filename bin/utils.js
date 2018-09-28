@@ -246,6 +246,7 @@ function generateEnvs(envVars) {
     modeEnvs.SBOT_LOG_LEVEL = envs('SBOT_LOG_LEVEL');
     modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
     modeEnvs.SBOT_LOG_DIR = envs('SBOT_LOG_DIR');
+    modeEnvs.SBOT_FILES_DIR = envs('SBOT_FILES_DIR');
     modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
     modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
   }
@@ -259,6 +260,7 @@ function generateEnvs(envVars) {
 }
 
 function mkdirRequiredFolders(allEnvs) {
+  mkdirp(allEnvs.SBOT_FILES_DIR);
   mkdirp(allEnvs.SBOT_LOG_DIR);
   mkdirp(allEnvs.SBOT_TRAINING_DATA_DIR);
   mkdirp(allEnvs.SBOT_PACKAGES_DIR);

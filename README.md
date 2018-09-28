@@ -88,7 +88,6 @@ yarn global add sactive-bot
   - [WeChat Protocol](http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html)
   - [WeixinBot](https://github.com/Urinx/WeixinBot)
   - [WeChat communication process](http://www.tanhao.me/talk/1466.html/)
-  - QRCode terminal
 - Mattermost Adapter
   - [hubot-matteruser](https://www.npmjs.com/package/hubot-matteruser)
   - [API doc](https://api.mattermost.com/)
