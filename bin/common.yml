@@ -1,5 +1,5 @@
 NODE_ENV:
-  description: 'Enter the environment mode'
+  description: 'Enter the environment mode (development/production)'
   pattern: /dev[elopment]*|prod[uction]?/
   message: 'Input development or production.'
   default: 'development'

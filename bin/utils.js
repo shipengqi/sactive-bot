@@ -107,6 +107,7 @@ async function create(cmd) {
         }
       });
     }
+
     if (envVars.SBOT_ENABLE_TLS.startsWith('y')) {
       certVars = await configConsole(certSchema);
       if (!fs.existsSync(certVars.SBOT_CERT_FILE_PATH) || !fs.existsSync(certVars.SBOT_KEY_FILE_PATH)) {
@@ -121,6 +122,12 @@ async function create(cmd) {
       ADAPTER_ENV_FILE: adapterEnvFile
     };
     let specifiedEnvs = extend(true, {}, envVars, {PLATFORM: platform.PLATFORM}, optionEnvs, certVars);
+    if (specifiedEnvs.NODE_ENV.startsWith('prod')) {
+      specifiedEnvs.NODE_ENV = 'production';
+    } else {
+      // default NODE_ENV is "development"
+      specifiedEnvs.NODE_ENV = 'development';
+    }
     // generate all env values
     let allEnvs = generateEnvs(specifiedEnvs);
     // genarate uniqueId for bot
@@ -139,7 +146,7 @@ async function create(cmd) {
     }
     return allEnvs;
   } catch (e) {
-    console.error(e.message);
+    console.error(e);
     process.exit(1);
   }
 }
@@ -242,13 +249,27 @@ function generateEnvs(envVars) {
   let defaultEnvs = envVars.NODE_ENV === 'production' ? ENVS.PRODUCTION : ENVS.DEVELOPMENT;
   // can be configured in production
   if (envVars.NODE_ENV === 'production') {
-    modeEnvs.SBOT_LOG_FILE_TIME = envs('SBOT_LOG_FILE_TIME');
-    modeEnvs.SBOT_LOG_LEVEL = envs('SBOT_LOG_LEVEL');
-    modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
-    modeEnvs.SBOT_LOG_DIR = envs('SBOT_LOG_DIR');
-    modeEnvs.SBOT_FILES_DIR = envs('SBOT_FILES_DIR');
-    modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
-    modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
+    if (envs('SBOT_LOG_FILE_TIME')) {
+      modeEnvs.SBOT_LOG_FILE_TIME = envs('SBOT_LOG_FILE_TIME');
+    }
+    if (envs('SBOT_LOG_LEVEL')) {
+      modeEnvs.SBOT_LOG_LEVEL = envs('SBOT_LOG_LEVEL');
+    }
+    if (envs('SBOT_LOG_LABEL')) {
+      modeEnvs.SBOT_LOG_LABEL = envs('SBOT_LOG_LABEL');
+    }
+    if (envs('SBOT_LOG_DIR')) {
+      modeEnvs.SBOT_LOG_DIR = envs('SBOT_LOG_DIR');
+    }
+    if (envs('SBOT_FILES_DIR')) {
+      modeEnvs.SBOT_FILES_DIR = envs('SBOT_FILES_DIR');
+    }
+    if (envs('SBOT_TRAINING_DATA_DIR')) {
+      modeEnvs.SBOT_TRAINING_DATA_DIR = envs('SBOT_TRAINING_DATA_DIR');
+    }
+    if (envs('SBOT_PACKAGES_DIR')) {
+      modeEnvs.SBOT_PACKAGES_DIR = envs('SBOT_PACKAGES_DIR');
+    }
   }
   // can be configured in development and production
   modeEnvs.SBOT_SERVER_BASEURL = envs('SBOT_SERVER_BASEURL') || defaultEnvs.SBOT_SERVER_BASEURL;
