@@ -53,7 +53,7 @@ yarn install
 npm link
 ```
 
-### NPM ot Yarn
+### NPM or Yarn
 ```bash
 npm install sactive-bot -g
 
