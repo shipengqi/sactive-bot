@@ -159,6 +159,10 @@ module.exports = robot => {
     registerListener(info, callback);
   };
 
+  robot.$.nativeRespond = function(regex, callback) {
+    robot.respond(regex, msg => callback(msg, robot));
+  };
+
   robot.$.registerAPICallback = function(integrationName, callbackId, callback) {
     let handlerType = typeof callback;
     if (_.isFunction(handlerType)) {
