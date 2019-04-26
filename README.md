@@ -83,7 +83,7 @@ yarn global add sactive-bot
 - Bot server authentication
 - Crypto all sensitive information
 - Render card
-- Docker version, kubernetes yaml file
+- Docker version, add kubernetes yaml file
 - Wechat Adapter
   - [WeChat Protocol](http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html)
   - [WeixinBot](https://github.com/Urinx/WeixinBot)
