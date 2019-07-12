@@ -142,7 +142,7 @@ async function create(cmd) {
 
     // exit process if the start option is not provided
     if (!cmd.start) {
-      process.exit(1);
+      process.exit(0);
     }
     return allEnvs;
   } catch (e) {
