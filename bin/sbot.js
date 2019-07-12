@@ -10,6 +10,7 @@ const {
 } = require('./utils');
 
 let command = null;
+
 program
   .version(
     JSON.parse(

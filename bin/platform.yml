@@ -1,4 +1,4 @@
 PLATFORM:
   description: 'Choose your platform：\n1) WeChat \n2) Slack \n3) Microsoft Teams \n4) Mattermost \n5) External'
-  pattern: /^[1-7]$/
+  pattern: /^[1-5]$/
   message: 'Choose a platform (between 1 and 7).'
