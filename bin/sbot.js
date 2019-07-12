@@ -10,22 +10,7 @@ const {
 } = require('./utils');
 
 let command = null;
-if (process.platform === 'win32') {
-  let rl = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
 
-  rl.on('SIGINT', () => {
-    console.log('SIGINT Finished');
-    process.emit('SIGINT');
-  });
-}
-
-process.on('SIGINT', () => {
-  console.log('Finished');
-  process.exit(0);
-});
 program
   .version(
     JSON.parse(
