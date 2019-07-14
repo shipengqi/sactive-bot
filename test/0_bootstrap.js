@@ -319,7 +319,7 @@ module.exports = function(robot) {
       let str3 = i18nConfigure.getTranslateResultForChatRoom(id, '{{loginAuthenticationEnterMsg}}');
       let collaborationUser = (new Buffer(msg.message.user.name)).toString('base64');
 
-      authProxy.getCachedCredentials(integrationName, collaborationUser)
+      authProxy.getCredentialsCache(integrationName, collaborationUser)
         .then(authInfo => {
           if (!authInfo) {
             registrar.apps[integrationName].auth.msg = msg;
