@@ -2,6 +2,7 @@ const _ = require('lodash');
 const extend = require('extend');
 const {CONVERSATION_INSTANCE_NAME} = require('../lib/constants');
 const {createDialog} = require('../lib/conversation');
+const AuthenticationProxy = require('../lib/authentication/authentication_proxy');
 
 module.exports = robot => {
   robot.$ = {};
@@ -14,6 +15,7 @@ module.exports = robot => {
   robot.$.registrar = {apps: new Map()};
   robot.$.commands = new Map();
   robot.$.conversation = createDialog(robot, 'user', CONVERSATION_INSTANCE_NAME.CONVERSATION);
+  robot.$.authProxy = new AuthenticationProxy(robot);
 
   let buildExtraRegex = function(info, integrationName) {
     // default values set for backward compatibility
@@ -76,6 +78,7 @@ module.exports = robot => {
     if (info.entity) {
       regexString += ` ${info.entity}`;
     }
+    let command = regexString;
     let subs = robot.$.commands.get(integrationName).subs;
     let subCommand = info.entity ? `${info.verb} ${info.entity}` : info.verb;
     if (subs.has(subCommand.toLowerCase())) { // commands are case-insensitive
@@ -84,9 +87,9 @@ module.exports = robot => {
     subs.set(subCommand.toLowerCase(), info.longDesc);
     if (info.regex) {
       regexString = `${regexString}${info.regex}$`;
-      robot.logger.debug(`The regexString is = ${regexString}.`);
+      robot.logger.debug(`The regexString is: ${regexString}.`);
     }
-    return new RegExp(regexString, 'i');
+    return {regex: new RegExp(regexString, 'i'), command: command};
   };
 
   let registerListener = function(info, callback) {
@@ -107,9 +110,59 @@ module.exports = robot => {
     if (!robot.$.registrar.apps.has(integrationName)) {
       throw new Error(`Cannot register listener for ${integrationName}, integration ${integrationName} not registered, please use robot.e.registerIntegration.`);
     }
-    let regex = buildRegex(info, integrationName);
-    robot.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
-    robot[info.type](regex, msg => callback(msg, robot));
+    let {regex, command} = buildRegex(info, integrationName);
+
+    let authenticatedHandler = async function(msg) {
+      robot.logger.debug(`Adding authentication to robot. ${info.type} ${command}`);
+
+      // let roomId = msg.envelope.message.room;
+      // if (robot.adapterName === 'msteams') {
+      //   if (roomId.startsWith('19:')) {
+      //     roomId = roomId.split('@')[0] + '@thread.skype';
+      //   }
+      // }
+
+      let str1 = `To issue ${command} need permission to access your integration.`;
+      let str2 = 'Please press the following link to the';
+      let str3 = 'and enter your credentials.';
+      let userInfo = {
+        name: msg.envelope.user.name || msg.message.user.name,
+        userId: msg.envelope.user.id || msg.message.user.id,
+        roomId: msg.envelope.room || msg.envelope.message.room || msg.message.room
+      };
+
+      let authInfo = await robot.$.authProxy.getCredentialsCache(integrationName, userInfo);
+      if (!authInfo) {
+        // TODO refreshAdapterAuthentication
+        // robot.$.registrar.apps.get(integrationName).auth.msg = msg;
+        // robot.$.authProxy.refreshAdapterAuthentication(integrationName, robot.$.registrar.apps.get(integrationName).auth);
+
+        // Send token_url to users
+        let url = await robot.$.authProxy.getLoginUrl(integrationName, userInfo, msg, callback);
+        let userId = msg.envelope.user.id;
+        let result = str1 + ' \n ' + str2 + ` [Bot Login Page](${url}) ` + str3;
+        robot.logger.info(`Authenticate for userId: ${userId}.`);
+
+        if (robot.adapterName === 'slack') {
+          result = str1 + ' \n ' + str2 + ` <${url}|Bot Login Page> ` + str3;
+        }
+        msg.reply(result);
+      } else {
+        robot.logger.info(`Authentication successful for robot.${info.type} ${regex.toString()}`);
+        callback(msg, robot, authInfo);
+      }
+    };
+
+    // Authentication is disabled by explicitly specifying auth: false in the
+    // robot.$.respond or robot.$.hear params.
+    if (robot.$.registrar.apps.get(integrationName).auth) {
+      // If authentication is enabled and integration has registered it
+      robot[info.type](regex, authenticatedHandler);
+    } else {
+      // If no authentication needed, use this handler instead
+      robot.logger.info(`Sbot registering call:\n\trobot.${info.type} ${regex.toString()}`);
+      robot[info.type](regex, msg => callback(msg, robot));
+    }
   };
 
   robot.$.registerIntegration = function(metadata, authentication) {
@@ -143,6 +196,23 @@ module.exports = robot => {
       desc: metadata.longDesc,
       subs: new Map()
     });
+
+    // Check that authentication existing and correct.
+    if (authentication) {
+      if (!authentication.adapter) {
+        robot.logger.warn('There is no authentication adapter, use default basic authentication adapter');
+      }
+
+      if (authentication.authHandler && !_.isFunction(authentication.authHandler)) {
+        throw new Error('The authHandler should be a function in authentication');
+      }
+
+      robot.$.authProxy.initAdapterForIntegration(integrationName, authentication);
+      robot.logger.info(`Adapter ${authentication.adapter} was enabled for integration ${integrationName}.`);
+    } else {
+      robot.logger.warn(`No authentication specified for registration: ${integrationName}.`);
+    }
+    // TODO add register authentication for command
     return robot.$.registrar.apps.set(integrationName, {
       metadata,
       auth: authentication || null

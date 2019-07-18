@@ -3,6 +3,8 @@ The restAPI (Bot server) can receive a http request with the `POST` way , it sta
 And it listens on the port specified by the `SBOT_SERVER_PORT` environment variable and defaults to `8081`.
 The `SBOT_SERVER_PORT` environment variable can be configured by command `sbot create`.
 
+> `SBOT_SERVER_HOST` default is `os.hostname()`.
+
 ## `robot.$.registerAPICallback(integrationName, callbackId, callback)`
 In your code you need to register the callback function for general rest API
  by calling robot.$.registerAPICallback function:
