@@ -4,6 +4,8 @@
 /log/
 /train/
 /packages/
+/public/
+/test/
 .idea
 *.lock
 *lock.json
