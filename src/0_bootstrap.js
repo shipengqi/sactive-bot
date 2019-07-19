@@ -153,10 +153,10 @@ module.exports = robot => {
       }
     };
 
-    // Authentication is disabled by explicitly specifying auth: false in the
+    // Authentication is disabled by explicitly specifying info.auth: false in the
     // robot.$.respond or robot.$.hear params.
-    if (robot.$.registrar.apps.get(integrationName).auth) {
-      // If authentication is enabled and integration has registered it
+    if (robot.$.registrar.apps.get(integrationName).auth && info.auth !== false) {
+      // If authentication is enabled and integration has registered it, and auth = false
       robot[info.type](regex, authenticatedHandler);
     } else {
       // If no authentication needed, use this handler instead
