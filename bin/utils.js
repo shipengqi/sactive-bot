@@ -102,7 +102,7 @@ async function create(cmd) {
     if (fs.existsSync(adapterEnvFile)) {
       let preEnvs = envHelper.get(adapterEnvFile);
       _.each(certSchema.properties, (env, key) => {
-        if (preEnvs[key] && (key === 'SBOT_CERT_FILE_PATH' || key === 'SBOT_KEY_FILE_PATH')) {
+        if (preEnvs[key] && (key === 'SBOT_CERT_FILE_PATH' || key === 'SBOT_KEY_FILE_PATH' || key === 'SBOT_CA_CERT_FILE_PATH')) {
           env.default = preEnvs[key];
         }
       });
@@ -142,6 +142,7 @@ async function create(cmd) {
 
     // exit process if the start option is not provided
     if (!cmd.start) {
+      console.warn(`The ${adapterEnvFile} generated successfully. \nStart the bot using 'sbot run --platform ${adapterName}'`);
       process.exit(0);
     }
     return allEnvs;
