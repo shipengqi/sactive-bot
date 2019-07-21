@@ -12,8 +12,8 @@ example:
 ```js
 let basicAuthConfig = {
   adapter: 'basic', // optional, default is 'basic'
-  TOKEN_TTL: 1800, // optional, default is 'basic'
-  AUTH_TIMEOUT: 60, // optional, default is 'basic'
+  TOKEN_TTL: 1800, // optional, default is 1800 seconds
+  AUTH_TIMEOUT: 300, // optional, default is 300 seconds
   authHandler: authenticateToProduct // required, should return a promise.
 };
 ```
