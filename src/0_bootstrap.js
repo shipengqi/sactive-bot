@@ -200,6 +200,7 @@ module.exports = robot => {
     // Check that authentication existing and correct.
     if (authentication) {
       if (!authentication.adapter) {
+        authentication.adapter = 'basic';
         robot.logger.warn('There is no authentication adapter, use default basic authentication adapter');
       }
 

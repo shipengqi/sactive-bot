@@ -142,6 +142,7 @@ async function create(cmd) {
 
     // exit process if the start option is not provided
     if (!cmd.start) {
+      console.warn(`The ${adapterEnvFile} generated successfully. \nStart the bot using 'sbot run --platform ${adapterName}'`);
       process.exit(0);
     }
     return allEnvs;

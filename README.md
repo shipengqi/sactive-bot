@@ -71,19 +71,21 @@ yarn global add sactive-bot
 - Help for bot
 - Conversation Manager
 - Command API call
+- Authentication
 - Support integrate your own adatper
 
 ## Documentations
 
-- Refer to the [Document web site](https://www.shipengqi.top/sactive-bot).
+- Comprehensive documentation [is available](https://www.shipengqi.top/sactive-bot).
 
 ## TODO
 - Unit Test
-- Command authentication
-- Bot server authentication
+- Command receiver authentication
 - Crypto all sensitive information
 - Render card
-- Docker version, add kubernetes yaml file
+- Docker version, kubernetes version
+
+## References
 - Wechat Adapter
   - [WeChat Protocol](http://www.blogjava.net/yongboy/archive/2015/11/05/410636.html)
   - [WeixinBot](https://github.com/Urinx/WeixinBot)
