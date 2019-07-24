@@ -122,7 +122,7 @@ module.exports = robot => {
       //   }
       // }
 
-      let str1 = `To issue ${command} need permission to access your integration.`;
+      let str1 = `To issue '${command}' need permission to access your integration.`;
       let str2 = 'Please press the following link to the';
       let str3 = 'and enter your credentials.';
       let userInfo = {

@@ -1,6 +1,6 @@
 {
   "name": "sactive-bot",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "mattermost bot",
     "microsoft teams bot"
   ],
-  "author": "Pooky",
+  "author": "shipengqi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shipengqi/sactive-bot/issues"
