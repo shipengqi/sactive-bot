@@ -59,7 +59,7 @@
     "qrextract": "^2.0.0",
     "request": "^2.87.0",
     "sactive-di": "^1.2.0",
-    "sactive-web": "^2.2.12",
+    "sactive-web": "^2.2.13",
     "sbot-conversation": "^1.5.0",
     "shelljs": "^0.8.2",
     "uniqid": "^5.0.3",

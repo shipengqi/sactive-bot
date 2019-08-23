@@ -1,6 +1,19 @@
 # Getting Started
 
-## create a bot
+## Setup development
+```sh
+# Clone source code
+git clone git@github.com:shipengqi/sactive-bot.git
+cd ./sactive-bot
+
+# create a bot
+node ./bin/sbot.js create
+
+# start a bot
+node ./bin/sbot.js run
+```
+
+## create a bot for production
 ```bash
 sbot create
 ```
@@ -14,7 +27,7 @@ Options:
     start up bot after created
 ```
 
-## running a bot
+## start a bot for production
 ```bash
 sbot run
 #or
